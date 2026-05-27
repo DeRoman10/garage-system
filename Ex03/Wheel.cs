@@ -10,7 +10,26 @@
         {
             m_manufacturerName = i_manufacturerName;
             m_maximumAirPressure = i_maximumAirPressure;
-            m_currentAirPressure = 0;
+        }
+
+        public float CurrentAirPressure
+        {
+            get
+            {
+                return m_currentAirPressure;
+            }
+        }
+
+        public void AddAir(float i_AirToAdd)
+        {
+            if (m_currentAirPressure + i_AirToAdd > m_maximumAirPressure)
+            {
+                //throw new ValueRangeException();
+            }
+            else
+            {
+                m_currentAirPressure += i_AirToAdd;
+            }
         }
     }
 }
