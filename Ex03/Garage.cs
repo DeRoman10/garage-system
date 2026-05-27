@@ -5,6 +5,6 @@ namespace Ex03
 {
     public class Garage
     {
-        private List<GarageTasks> m_tasks = new List<GarageTasks>();
+        private List<GarageTask> m_tasks = new List<GarageTask>();
     }
 }
