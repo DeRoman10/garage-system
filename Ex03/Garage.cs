@@ -5,6 +5,6 @@ namespace Ex03.GarageLogic
 {
     public class Garage
     {
-        private List<GarageTask> m_tasks = new List<GarageTask>();
+        private Dictionary<string, GarageTask> m_Tasks = new Dictionary<string, GarageTask>();
     }
 }

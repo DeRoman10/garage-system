@@ -1,4 +1,5 @@
 ﻿namespace Ex03.GarageLogic
+
 {
     public class FuelTruck : Vehicle
     {
@@ -10,7 +11,7 @@
         private const float k_MaximumFuelCapacity = 125;
 
         public FuelTruck(string i_ModelName, string i_LicenseNumber)
-            : base(i_ModelName, i_LicenseNumber, new FuelSource(k_emptyEnergy, k_MaximumFuelCapacity, m_FuelType), k_NumberOfWheels, k_MaximumAirPressure)
+            : base(i_LicenseNumber, i_ModelName, new FuelSource(k_emptyEnergy, k_MaximumFuelCapacity, m_FuelType), k_NumberOfWheels, k_MaximumAirPressure)
         {
         }
 

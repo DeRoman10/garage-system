@@ -3,7 +3,7 @@
     public class Car : Vehicle
     {
         private eColor m_CarColor;
-        private readonly eNumberOfDoors m_NumberOfDoors;
+        private eNumberOfDoors m_NumberOfDoors;
         private const int k_NumberOfWheels = 5;
         private const float k_MaximumAirPressure = 31f;
 
