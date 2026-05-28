@@ -20,12 +20,17 @@
             }
         }
 
-        virtual protected void AddEnergy(float i_EnergyToAdd)
+        public abstract string GetEnergyDetails();
+
+        protected void AddEnergy(float i_EnergyToAdd)
         {
-            if (m_EnergyLeft + i_EnergyToAdd > m_MaxEnergyCapacity)
+            float maxEnergyToAdd = m_MaxEnergyCapacity - m_EnergyLeft;
+
+            if (i_EnergyToAdd < 0 || i_EnergyToAdd > maxEnergyToAdd)
             {
-                //throw new ValueRangeException(); 
+                throw new ValueRangeException(0, maxEnergyToAdd);
             }
+
             m_EnergyLeft += i_EnergyToAdd;
         }
     }

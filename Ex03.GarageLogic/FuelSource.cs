@@ -20,12 +20,19 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public void Refuel(float i_LitersToAdd, eFuelType i_FuelType)
+        public override string GetEnergyDetails()
+        {
+            return string.Format(
+                "Fuel type: {0}, Current fuel: {1}, Max fuel: {2}", m_FuelType, m_EnergyLeft, m_MaxEnergyCapacity);
+        }
+
+        public void Refuel(eFuelType i_FuelType, float i_LitersToAdd)
         {
             if (i_FuelType != m_FuelType)
             {
-                throw new ArgumentException("Wrong fuel type");
+                throw new ArgumentException("Incorrect fuel type.");
             }
+
             AddEnergy(i_LitersToAdd);
         }
     }

@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{252C4FF4-88D5-46D3-AE8D-0E9B7B76801E}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>Ex03.GarageLogic</RootNamespace>
     <AssemblyName>Ex03.GarageLogic</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -32,14 +32,16 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Car.cs" />
     <Compile Include="eColor.cs" />
     <Compile Include="eFuelType.cs" />
-    <Compile Include="ElecticCar.cs" />
+    <Compile Include="ElectricCar.cs" />
     <Compile Include="ElectricMotorcycle.cs" />
     <Compile Include="ElectricSource.cs" />
     <Compile Include="EnergySource.cs" />
@@ -52,7 +54,6 @@
     <Compile Include="Garage.cs" />
     <Compile Include="GarageTask.cs" />
     <Compile Include="Motorcycle.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="FuelTruck.cs" />
     <Compile Include="ValueRangeException.cs" />
     <Compile Include="Vehicle.cs" />

@@ -8,9 +8,15 @@
             m_MaxEnergyCapacity = i_MaxBatteryLife;
         }
 
-        public void ChargeBattery(float i_HoursToAdd)
+        public override string GetEnergyDetails()
+        {
+            return string.Format(
+                "Battery left: {0} hours, Max battery: {1} hours", m_EnergyLeft, m_MaxEnergyCapacity);
+        }
+
+        public void ChargeBattery(float i_HoursToCharge)
         { 
-            AddEnergy(i_HoursToAdd);
+            AddEnergy(i_HoursToCharge);
         }
     }
 }

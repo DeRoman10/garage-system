@@ -12,7 +12,7 @@
             m_OwnerName = i_OwnerName;
             m_OwnerPhone = i_OwnerPhone;
             m_Vehicle = i_Vehicle;
-            m_VehicleStatus = eVehicleStatus.onRepair;
+            m_VehicleStatus = eVehicleStatus.OnRepair;
         }
 
         public eVehicleStatus VehicleStatus

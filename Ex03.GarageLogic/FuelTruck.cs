@@ -8,13 +8,13 @@ namespace Ex03.GarageLogic
     {
         private bool m_IsCarryingFreezingCargo;
         private float m_CargoVolume;
-        private const eFuelType m_FuelType = eFuelType.Soler;
+        private const eFuelType k_FuelType = eFuelType.Soler;
         private const int k_NumberOfWheels = 14;
         private const float k_MaximumAirPressure = 28f;
         private const float k_MaximumFuelCapacity = 125;
 
         public FuelTruck(string i_LicenseNumber, string i_ModelName)
-            : base(i_LicenseNumber, i_ModelName, new FuelSource(k_EmptyEnergy, k_MaximumFuelCapacity, m_FuelType), k_NumberOfWheels, k_MaximumAirPressure)
+            : base(i_ModelName, i_LicenseNumber, new FuelSource(k_EmptyEnergy, k_MaximumFuelCapacity, k_FuelType), k_NumberOfWheels, k_MaximumAirPressure)
         {
         }
 
@@ -46,7 +46,7 @@ namespace Ex03.GarageLogic
         {
             Dictionary<string, string> truckSpecificProperties = new Dictionary<string, string>();
 
-            truckSpecificProperties.Add("Carrying freezing cargo (yes/no)", "");
+            truckSpecificProperties.Add("Carrying freezing cargo (true/false)", "");
             truckSpecificProperties.Add("Cargo volume", "");
 
             return truckSpecificProperties;
