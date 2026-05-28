@@ -1,5 +1,5 @@
 ﻿
-namespace Ex03
+namespace Ex03.GarageLogic
 {
     public class Motorcycle : Vehicle
     {

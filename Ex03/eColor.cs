@@ -1,4 +1,4 @@
-﻿namespace Ex03
+﻿namespace Ex03.GarageLogic
 {
     public enum eColor
     {

@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Ex03
+namespace Ex03.GarageLogic
 {
     public class FuelSource : EnergySource
     {

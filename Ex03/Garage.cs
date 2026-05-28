@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
-namespace Ex03
+namespace Ex03.GarageLogic
 {
     public class Garage
     {
