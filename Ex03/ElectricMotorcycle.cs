@@ -5,7 +5,7 @@
         private const float k_MaxBatteryTime = 3f;
 
         public ElectricMotorcycle(string i_LicenseID, string i_ModelName)
-            : base(i_ModelName, i_LicenseID, new ElectricSource(k_emptyEnergy, k_MaxBatteryTime))
+            : base(i_ModelName, i_LicenseID, new ElectricSource(k_EmptyEnergy, k_MaxBatteryTime))
         {
         }
 

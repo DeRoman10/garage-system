@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace Ex03.GarageLogic
 {
     public class FuelMotorcycle : Motorcycle
@@ -7,7 +9,7 @@ namespace Ex03.GarageLogic
         private const eFuelType k_FuelType = eFuelType.Octan95;
 
         public FuelMotorcycle(string i_LicenseID, string i_ModelName)
-            : base(i_ModelName, i_LicenseID, new FuelSource(k_emptyEnergy, k_MaxFuel, k_FuelType))
+            : base(i_ModelName, i_LicenseID, new FuelSource(k_EmptyEnergy, k_MaxFuel, k_FuelType))
         {
         }
     }

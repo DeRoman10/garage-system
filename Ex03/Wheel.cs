@@ -2,34 +2,37 @@
 {
     public class Wheel
     {
-        private string m_manufacturerName;
-        private float m_currentAirPressure;
-        private readonly float m_maximumAirPressure;
+        private string m_ManufacturerName;
+        private float m_CurrentAirPressure;
+        private readonly float m_MaximumAirPressure;
 
-        public Wheel(string i_manufacturerName , float i_maximumAirPressure)
+        public Wheel(string i_manufacturerName, float i_maximumAirPressure)
         {
-            m_manufacturerName = i_manufacturerName;
-            m_maximumAirPressure = i_maximumAirPressure;
+            m_ManufacturerName = i_manufacturerName;
+            m_MaximumAirPressure = i_maximumAirPressure;
         }
 
         public float CurrentAirPressure
         {
             get
             {
-                return m_currentAirPressure;
+                return m_CurrentAirPressure;
             }
         }
 
         public void AddAir(float i_AirToAdd)
         {
-            if (m_currentAirPressure + i_AirToAdd > m_maximumAirPressure)
+            if (m_CurrentAirPressure + i_AirToAdd > m_MaximumAirPressure)
             {
-                //throw new ValueRangeException();
+                throw new ValueRangeException(0, m_MaximumAirPressure - m_CurrentAirPressure);
             }
-            else
-            {
-                m_currentAirPressure += i_AirToAdd;
-            }
+
+            m_CurrentAirPressure += i_AirToAdd;
+        }
+
+        public void InflateToMax()
+        {
+            m_CurrentAirPressure = m_MaximumAirPressure;
         }
     }
 }

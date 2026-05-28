@@ -1,4 +1,7 @@
-﻿namespace Ex03.GarageLogic
+﻿using System;
+using System.Collections.Generic;
+
+namespace Ex03.GarageLogic
 {
     public class Car : Vehicle
     {
@@ -30,6 +33,31 @@
             {
                 return m_NumberOfDoors;
             }
+            set
+            {
+                m_NumberOfDoors = value;
+            }
+        }
+
+        public override Dictionary<string, string> GetRequiredPropertiesNames()
+        {
+            Dictionary<string, string> carSpecificProperties = new Dictionary<string, string>();
+
+            carSpecificProperties.Add("Color (Red/Yellow/Black/Silver)", "");
+            carSpecificProperties.Add("Number of doors (Two/Three/Four/Five)", "");
+            return carSpecificProperties;
+        }
+
+        public override void SetRequiredProperties(Dictionary<string, string> i_Properties)
+        {
+            m_CarColor = (eColor)Enum.Parse(typeof(eColor), i_Properties["Color (Red/Yellow/Black/Silver)"]);
+            m_NumberOfDoors = (eNumberOfDoors)Enum.Parse(typeof(eNumberOfDoors), i_Properties["Number of doors (Two/Three/Four/Five)"]);
+        }
+
+        public override string ToString()
+        {
+            return string.Format("Model: {0}, License: {1}, Energy: {2}%, Color: {3}, Doors: {4}",
+                ModelName, LicenseNumber, EnergyPercentage, m_CarColor, m_NumberOfDoors);
         }
     }
 
