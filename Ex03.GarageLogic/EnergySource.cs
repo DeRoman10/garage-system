@@ -22,7 +22,7 @@
 
         public abstract string GetEnergyDetails();
 
-        protected void AddEnergy(float i_EnergyToAdd)
+        public void AddEnergy(float i_EnergyToAdd)
         {
             float maxEnergyToAdd = m_MaxEnergyCapacity - m_EnergyLeft;
 
@@ -33,6 +33,8 @@
 
             m_EnergyLeft += i_EnergyToAdd;
         }
+
+        
     }
 }
 

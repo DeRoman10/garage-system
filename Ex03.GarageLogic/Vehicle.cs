@@ -67,6 +67,13 @@ namespace Ex03.GarageLogic
             }
         }
 
+        public void SetInitialEnergyByPercentage(float i_EnergyToSet)
+        {
+            float convertedAmount = (i_EnergyToSet / 100f) * m_EnergySource.MaxEnergyCapacity;
+
+            m_EnergySource.AddEnergy(convertedAmount);
+        }
+
         public void InflateWheelsToMax()
         {
             foreach (Wheel wheel in m_Wheels)
