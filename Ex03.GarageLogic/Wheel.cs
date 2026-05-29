@@ -38,6 +38,10 @@
             {
                 return m_CurrentAirPressure;
             }
+            set
+            {
+                m_CurrentAirPressure = value;
+            }
         }
 
         public void AddAir(float i_AirToAdd)
