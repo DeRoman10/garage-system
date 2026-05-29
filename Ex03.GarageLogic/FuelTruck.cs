@@ -1,0 +1,67 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace Ex03.GarageLogic
+
+{
+    public class FuelTruck : Vehicle
+    {
+        private bool m_IsCarryingFreezingCargo;
+        private float m_CargoVolume;
+        private const eFuelType k_FuelType = eFuelType.Soler;
+        private const int k_NumberOfWheels = 14;
+        private const float k_MaximumAirPressure = 28f;
+        private const float k_MaximumFuelCapacity = 125;
+
+        public FuelTruck(string i_LicenseNumber, string i_ModelName)
+            : base(i_ModelName, i_LicenseNumber, new FuelSource(k_EmptyEnergy, k_MaximumFuelCapacity, k_FuelType), k_NumberOfWheels, k_MaximumAirPressure)
+        {
+        }
+
+        public bool IsCarryingFreezingCargo
+        {
+            get
+            {
+                return m_IsCarryingFreezingCargo;
+            }
+            set
+            {
+                m_IsCarryingFreezingCargo = value;
+            }
+        }
+
+        public float CargoVolume
+        {
+            get
+            {
+                return m_CargoVolume;
+            }
+            set
+            {
+                m_CargoVolume = value;
+            }
+        }
+
+        public override Dictionary<string, string> GetRequiredPropertiesNames()
+        {
+            Dictionary<string, string> truckSpecificProperties = new Dictionary<string, string>();
+
+            truckSpecificProperties.Add("Carrying freezing cargo (true/false)", "");
+            truckSpecificProperties.Add("Cargo volume", "");
+
+            return truckSpecificProperties;
+        }
+
+        public override void SetRequiredProperties(Dictionary<string, string> i_Properties)
+        {
+            m_IsCarryingFreezingCargo = bool.Parse(i_Properties["Carrying freezing cargo (true/false)"]);
+            m_CargoVolume = float.Parse(i_Properties["Cargo volume"]);
+        }
+
+        public override string ToString()
+        {
+            return string.Format("Model: {0}, License: {1}, Energy: {2}%, Freezing cargo: {3}, Cargo volume: {4}",
+                ModelName, LicenseNumber, EnergyPercentage, m_IsCarryingFreezingCargo, m_CargoVolume);
+        }
+    }
+}
