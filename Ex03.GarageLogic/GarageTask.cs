@@ -3,14 +3,14 @@
     public class GarageTask
     {
         private string m_OwnerName;
-        private string m_OwnerPhone;
+        private string m_OwnerPhoneNumber;
         private eVehicleStatus m_VehicleStatus;
         private Vehicle m_Vehicle;
 
         public GarageTask(string i_OwnerName, string i_OwnerPhone, Vehicle i_Vehicle)
         {
             m_OwnerName = i_OwnerName;
-            m_OwnerPhone = i_OwnerPhone;
+            m_OwnerPhoneNumber = i_OwnerPhone;
             m_Vehicle = i_Vehicle;
             m_VehicleStatus = eVehicleStatus.OnRepair;
         }
@@ -32,6 +32,30 @@
             get
             {
                 return m_Vehicle;
+            }
+        }
+
+        public string OwnerName
+        {
+            get
+            {
+                return m_OwnerName;
+            }
+            set
+            {
+                m_OwnerName = value;
+            }
+        }
+
+        public string OwnerPhone
+        {
+            get
+            {
+                return m_OwnerPhoneNumber;
+            }
+            set
+            {
+                m_OwnerPhoneNumber = value;
             }
         }
     }

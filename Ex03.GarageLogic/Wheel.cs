@@ -12,6 +12,26 @@
             m_MaximumAirPressure = i_maximumAirPressure;
         }
 
+        public string ManufacturerName
+        {
+            get
+            {
+                return m_ManufacturerName;
+            }
+            set
+            {
+                m_ManufacturerName = value;
+            }
+        }
+
+        public float MaximumAirPressure
+        {
+            get
+            {
+                return m_MaximumAirPressure;
+            }
+        }
+
         public float CurrentAirPressure
         {
             get

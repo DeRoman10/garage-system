@@ -7,7 +7,7 @@ namespace Ex03.GarageLogic
     {
         private Dictionary<string, GarageTask> m_Tasks = new Dictionary<string, GarageTask>();
 
-        public Dictionary<string, string> AddVehicle(string i_LicenseNumber, string i_VehicleType, string i_OwnerName, string i_OwnerPhoneNumber)
+        public Dictionary<string, string> AddVehicle(string i_ModelName, string i_LicenseNumber, string i_VehicleType, string i_OwnerName, string i_OwnerPhoneNumber)
         {
 
             if (m_Tasks.ContainsKey(i_LicenseNumber))
@@ -16,7 +16,7 @@ namespace Ex03.GarageLogic
                 throw new ArgumentException("Car is already in garage.");
             }
 
-            Vehicle newVehicle = VehicleCreator.CreateVehicle(i_VehicleType, i_LicenseNumber, "");
+            Vehicle newVehicle = VehicleCreator.CreateVehicle(i_VehicleType, i_LicenseNumber, i_ModelName);
             GarageTask newTask = new GarageTask(i_OwnerName, i_OwnerPhoneNumber, newVehicle);
             m_Tasks.Add(i_LicenseNumber, newTask);
 
