@@ -33,6 +33,10 @@ namespace Ex03.GarageLogic
             {
                 return m_EngineVolume;
             }
+            set
+            {
+                m_EngineVolume = value;
+            }
         }
 
         public override Dictionary<string, string> GetRequiredPropertiesNames()

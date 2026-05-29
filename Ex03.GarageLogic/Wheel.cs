@@ -6,10 +6,10 @@
         private float m_CurrentAirPressure;
         private readonly float m_MaximumAirPressure;
 
-        public Wheel(string i_manufacturerName, float i_maximumAirPressure)
+        public Wheel(string i_ManufacturerName, float i_MaximumAirPressure)
         {
-            m_ManufacturerName = i_manufacturerName;
-            m_MaximumAirPressure = i_maximumAirPressure;
+            m_ManufacturerName = i_ManufacturerName;
+            m_MaximumAirPressure = i_MaximumAirPressure;
         }
 
         public string ManufacturerName

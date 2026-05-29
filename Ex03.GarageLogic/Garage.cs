@@ -23,7 +23,7 @@ namespace Ex03.GarageLogic
             return newVehicle.GetRequiredPropertiesNames();
         }
 
-        public Vehicle GetVehicle(String i_LicenseNumber)
+        public Vehicle GetVehicle(string i_LicenseNumber)
         {
             validateVehicleInGarage(i_LicenseNumber);
 

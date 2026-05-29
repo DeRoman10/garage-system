@@ -14,7 +14,7 @@ namespace Ex03.GarageLogic
         public abstract Dictionary<string, string> GetRequiredPropertiesNames();
         public abstract void SetRequiredProperties(Dictionary<string, string> i_Properties);
 
-        public Vehicle(string i_ModelName, string i_LicenseNumber, EnergySource i_EnergySource, int i_NumberOfWheels , float i_MaxAirPressure)
+        public Vehicle(string i_ModelName, string i_LicenseNumber, EnergySource i_EnergySource, int i_NumberOfWheels, float i_MaxAirPressure)
         {
             m_ModelName = i_ModelName;
             m_LicenseNumber = i_LicenseNumber;
