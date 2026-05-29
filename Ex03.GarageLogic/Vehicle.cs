@@ -70,11 +70,6 @@ namespace Ex03.GarageLogic
         public void SetInitialEnergyByPercentage(float i_EnergyPercentage)
         {
             float convertedAmount = (i_EnergyPercentage / 100f) * m_EnergySource.MaxEnergyCapacity;
-            
-            if (convertedAmount < 0 || convertedAmount > m_EnergySource.MaxEnergyCapacity)
-            {
-                throw new ValueRangeException(0, m_EnergySource.MaxEnergyCapacity);
-            }
 
             m_EnergySource.AddEnergy(convertedAmount);
         }

@@ -30,6 +30,13 @@ namespace Ex03.GarageLogic
             return m_Tasks[i_LicenseNumber].Vehicle;
         }
 
+        public GarageTask GetTask(string i_LicenseNumber)
+        {
+            validateVehicleInGarage(i_LicenseNumber);
+
+            return m_Tasks[i_LicenseNumber];
+        }
+
         public void SetVehicleProperties(string i_LicenseNumber, Dictionary<string, string> i_Properties)
         {
             validateVehicleInGarage(i_LicenseNumber);
@@ -42,6 +49,18 @@ namespace Ex03.GarageLogic
             validateVehicleInGarage(i_LicenseNumber);
 
             m_Tasks[i_LicenseNumber].VehicleStatus = i_NewStatus;
+        }
+
+        public void SetWheelProperties(string i_LicenseNumber, string i_ManufacturerName, float i_AirPressure)
+        {
+            //I thought of adding validity check here but not sure how
+            validateVehicleInGarage(i_LicenseNumber);
+
+            foreach (Wheel wheel in m_Tasks[i_LicenseNumber].Vehicle.Wheels)
+            {
+                wheel.ManufacturerName = i_ManufacturerName;
+                
+            }
         }
 
         public void InflateWheelsToMax(string i_LicenseNumber)
@@ -65,6 +84,16 @@ namespace Ex03.GarageLogic
             float hoursToCharge = i_MinutesToCharge / 60f;
 
             m_Tasks[i_LicenseNumber].Vehicle.Charge(hoursToCharge);
+        }
+
+        public void SetInitialEnergyByPercentage(string i_LicenseNumber, float i_EnergyPercentage)
+        {
+            if (i_EnergyPercentage < 0 || i_EnergyPercentage > 100)
+            {
+                throw new ValueRangeException(0, 100);
+            }
+
+            m_Tasks[i_LicenseNumber].Vehicle.SetInitialEnergyByPercentage(i_EnergyPercentage);
         }
 
         public bool IsVehicleInGarage(string i_LicenseNumber)
