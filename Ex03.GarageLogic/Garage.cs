@@ -54,11 +54,12 @@ namespace Ex03.GarageLogic
         public void SetWheelProperties(string i_LicenseNumber, string i_ManufacturerName, float i_AirPressure)
         {
             //I thought of adding validity check here but not sure how
+            validateVehicleInGarage(i_LicenseNumber);
 
             foreach (Wheel wheel in m_Tasks[i_LicenseNumber].Vehicle.Wheels)
             {
                 wheel.ManufacturerName = i_ManufacturerName;
-                wheel.CurrentAirPressure = i_AirPressure;
+                
             }
         }
 
@@ -89,7 +90,7 @@ namespace Ex03.GarageLogic
         {
             if (i_EnergyPercentage < 0 || i_EnergyPercentage > 100)
             {
-                throw new ArgumentException("Please enter values between 0 to 100.");
+                throw new ValueRangeException(0, 100);
             }
 
             m_Tasks[i_LicenseNumber].Vehicle.SetInitialEnergyByPercentage(i_EnergyPercentage);
