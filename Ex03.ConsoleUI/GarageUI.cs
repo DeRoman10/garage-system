@@ -16,7 +16,7 @@ namespace Ex03.ConsoleUI
             {
                 try
                 {
-                    eMenuOptions choice = getMenuChoice();
+                    eMenuOptions choice = GetMenuChoice();
 
                     exitRequested = executeMenuOption(choice);
                 }
@@ -27,7 +27,7 @@ namespace Ex03.ConsoleUI
             }
         }
 
-        public eMenuOptions getMenuChoice()
+        internal eMenuOptions GetMenuChoice()
         {
             printMenu();
             
@@ -56,31 +56,31 @@ namespace Ex03.ConsoleUI
 
             switch (i_Choice)
             {
-                case eMenuOption.LoadFromFile:
+                case eMenuOptions.LoadFromFile:
                     loadFromFile();
                     break;
-                case eMenuOption.AddVehicle:
+                case eMenuOptions.AddVehicle:
                     addVehicle();
                     break;
-                case eMenuOption.DisplayLicensePlates:
+                case eMenuOptions.DisplayLicensePlates:
                     displayLicensePlates();
                     break;
-                case eMenuOption.ChangeVehicleStatus:
+                case eMenuOptions.ChangeVehicleStatus:
                     changeVehicleStatus();
                     break;
-                case eMenuOption.InflateWheelsToMax:
+                case eMenuOptions.InflateWheelsToMax:
                     inflateWheelsToMax();
                     break;
-                case eMenuOption.RefuelVehicle:
+                case eMenuOptions.RefuelVehicle:
                     refuelVehicle();
                     break;
-                case eMenuOption.ChargeVehicle:
+                case eMenuOptions.ChargeVehicle:
                     chargeVehicle();
                     break;
-                case eMenuOption.DisplayVehicleInfo:
+                case eMenuOptions.DisplayVehicleInfo:
                     displayVehicleInfo();
                     break;
-                case eMenuOption.Exit:
+                case eMenuOptions.Exit:
                     exitRequested = true;
                     break;
             }
@@ -88,14 +88,33 @@ namespace Ex03.ConsoleUI
             return exitRequested;
         }
 
-        /*private void loadFromFile() { }
-        private void addVehicle() { }
+        private void loadFromFile() { }
+
+        private void addVehicle()
+        {
+            string modelName, licenseNumber, vehicleType, ownerName, ownerPhoneNumber;
+
+            Console.WriteLine("Please enter vehicle model's name");
+            modelName = Console.ReadLine();
+
+            Console.WriteLine("Please enter vehicle's license plate number");
+            licenseNumber = Console.ReadLine();
+
+            Console.WriteLine("Please enter vehicle's type");
+            vehicleType = Console.ReadLine();
+
+            Console.WriteLine("Please enter vehicle owner's full name");
+            ownerName = Console.ReadLine();
+
+            Console.WriteLine("Please enter vehicle owner's phone number");
+            ownerPhoneNumber = Console.ReadLine();
+        }
+        
         private void displayLicensePlates() { }
         private void changeVehicleStatus() { }
         private void inflateWheelsToMax() { }
         private void refuelVehicle() { }
         private void chargeVehicle() { }
-        private void displayVehicleInfo() { }*/
-
+        private void displayVehicleInfo() { }
     }
 }

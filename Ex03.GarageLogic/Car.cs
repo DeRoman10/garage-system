@@ -43,9 +43,9 @@ namespace Ex03.GarageLogic
         {
             List<VehiclePropertyInfo> carSpecificProperties = new List<VehiclePropertyInfo>();
 
-            carSpecificProperties.Add(new VehiclePropertyInfo("eColor", Enum.GetNames(typeof(eColor))));
+            carSpecificProperties.Add(new VehiclePropertyInfo("eColor", "Color", Enum.GetNames(typeof(eColor))));
 
-            carSpecificProperties.Add(new VehiclePropertyInfo("eNumberOfDoors", Enum.GetNames(typeof(eNumberOfDoors))));
+            carSpecificProperties.Add(new VehiclePropertyInfo("eNumberOfDoors", "Number of Doors", Enum.GetNames(typeof(eNumberOfDoors))));
 
             return carSpecificProperties;
         }
