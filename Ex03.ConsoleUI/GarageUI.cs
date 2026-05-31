@@ -11,12 +11,15 @@ namespace Ex03.ConsoleUI
         private readonly AddVehicleUI r_AddVehicleUI;
         private readonly InventoryUI r_InventoryUI;
         private readonly VehicleStatusUI r_vehicleStatusUI;
+        private readonly WheelServiceUI r_wheelServiceUI;
+
 
         public GarageUI()
         {
             r_AddVehicleUI = new AddVehicleUI(r_Garage);
             r_InventoryUI = new InventoryUI(r_Garage);
             r_vehicleStatusUI = new VehicleStatusUI(r_Garage);
+            r_wheelServiceUI = new WheelServiceUI(r_Garage);
         }
 
         public void Run()
@@ -80,7 +83,7 @@ namespace Ex03.ConsoleUI
                     r_vehicleStatusUI.ChangeVehicleStatus();
                     break;
                 case eMenuOptions.InflateWheelsToMax:
-                    inflateWheelsToMax();
+                    r_wheelServiceUI.inflateWheelsToMax();
                     break;
                 case eMenuOptions.RefuelVehicle:
                     refuelVehicle();
@@ -100,9 +103,6 @@ namespace Ex03.ConsoleUI
         }
 
         private void loadFromFile() { }
-
-        private void changeVehicleStatus() { }
-        private void inflateWheelsToMax() { }
         private void refuelVehicle() { }
         private void chargeVehicle() { }
         private void displayVehicleInfo() { }

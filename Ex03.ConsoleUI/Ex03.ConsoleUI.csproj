@@ -42,6 +42,7 @@
     <Compile Include="InventoryUI.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="VehicleStatusUI.cs" />
+    <Compile Include="WheelServiceUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ex03.GarageLogic\Ex03.GarageLogic.csproj">
