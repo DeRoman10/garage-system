@@ -124,25 +124,30 @@ namespace Ex03.ConsoleUI
 
         private string vehicleTypeInputHandler()
         {
-            Dictionary<int, string> availableVehicleTypesNumbered = createNumberedVehicleTypeDictionary();
+            int userChoice = int.Parse(Console.ReadLine());
             string actualChosenType = string.Empty;
 
-            printTypes(availableVehicleTypesNumbered);
+            printTypes();
             
-            actualChosenType = getChosenVehicleType(availableVehicleTypesNumbered);
+            if (userChoice - 1 < 0 || userChoice - 1 >= VehicleCreator.SupportedTypes.Count)
+            {
+                throw new ArgumentException("Unsupported vehicle type.");
+            }
+
+            actualChosenType = VehicleCreator.SupportedTypes[userChoice];
 
             return actualChosenType;
         }
 
-        private void printTypes(Dictionary<int, string> availableVehicleTypesNumbered)
+        private void printTypes()
         {
-            foreach(int currentTypeIndex in availableVehicleTypesNumbered.Keys)
+            for (int i = 0; i < VehicleCreator.SupportedTypes.Count; i++)
             {
-                Console.WriteLine("{0}) {1}", currentTypeIndex, availableVehicleTypesNumbered[currentTypeIndex]);
+                Console.WriteLine("{0}) {1}", i + 1, VehicleCreator.SupportedTypes[i]);
             }
         }
 
-        private string getChosenVehicleType(Dictionary<int, string> availableVehicleTypesNumbered)
+        /*private string getChosenVehicleType(Dictionary<int, string> availableVehicleTypesNumbered)
         {
             int userChoice = int.Parse(Console.ReadLine());
             string actualChosenType = string.Empty;
@@ -175,7 +180,7 @@ namespace Ex03.ConsoleUI
             }
 
             return availableVehicleTypesNumbered;
-        }
+        }*/
 
         private Dictionary<string, string> setSpecificPropertiesForAddedVehicle(List<VehiclePropertyInfo> typeSpecificInfo)
         {
