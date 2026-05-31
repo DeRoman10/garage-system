@@ -93,7 +93,7 @@ namespace Ex03.ConsoleUI
         private void addVehicle()
         {
             string modelName, licenseNumber, vehicleType, ownerName, ownerPhoneNumber, wheelManufacturerName;
-            int airPressure = 0, energyPercentage = 0;
+            float airPressure = 0, energyPercentage = 0;
 
             Console.WriteLine("Please enter vehicle model's name");
             modelName = Console.ReadLine();
@@ -108,10 +108,10 @@ namespace Ex03.ConsoleUI
             wheelManufacturerName = Console.ReadLine();
 
             Console.WriteLine("Please enter wheel's current air pressure:");
-            airPressure = int.Parse(Console.ReadLine());
+            airPressure = float.Parse(Console.ReadLine());
 
             Console.WriteLine("Please enter vehicle's current energy level %:");
-            energyPercentage = int.Parse(Console.ReadLine());
+            energyPercentage = float.Parse(Console.ReadLine());
 
             Console.WriteLine("Please enter vehicle owner's full name");
             ownerName = Console.ReadLine();
