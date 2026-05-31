@@ -11,7 +11,7 @@ namespace Ex03.GarageLogic
         protected EnergySource m_EnergySource;
         protected Wheel[] m_Wheels;
 
-        public abstract Dictionary<string, string> GetRequiredPropertiesNames();
+        public abstract List<VehiclePropertyInfo> GetRequiredProperties();
         public abstract void SetRequiredProperties(Dictionary<string, string> i_Properties);
 
         public Vehicle(string i_ModelName, string i_LicenseNumber, EnergySource i_EnergySource, int i_NumberOfWheels, float i_MaxAirPressure)

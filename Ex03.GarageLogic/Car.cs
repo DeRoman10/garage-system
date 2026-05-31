@@ -39,19 +39,21 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public override Dictionary<string, string> GetRequiredPropertiesNames()
+        public override List<VehiclePropertyInfo> GetRequiredProperties()
         {
-            Dictionary<string, string> carSpecificProperties = new Dictionary<string, string>();
+            List<VehiclePropertyInfo> carSpecificProperties = new List<VehiclePropertyInfo>();
 
-            carSpecificProperties.Add("Color (Red/Yellow/Black/Silver)", "");
-            carSpecificProperties.Add("Number of doors (Two/Three/Four/Five)", "");
+            carSpecificProperties.Add(new VehiclePropertyInfo("eColor", "Color", Enum.GetNames(typeof(eColor))));
+
+            carSpecificProperties.Add(new VehiclePropertyInfo("eNumberOfDoors", "Number of Doors", Enum.GetNames(typeof(eNumberOfDoors))));
+
             return carSpecificProperties;
         }
 
         public override void SetRequiredProperties(Dictionary<string, string> i_Properties)
         {
-            m_CarColor = (eColor)Enum.Parse(typeof(eColor), i_Properties["Color (Red/Yellow/Black/Silver)"]);
-            m_NumberOfDoors = (eNumberOfDoors)Enum.Parse(typeof(eNumberOfDoors), i_Properties["Number of doors (Two/Three/Four/Five)"]);
+            m_CarColor = (eColor)Enum.Parse(typeof(eColor), i_Properties["eColor"]);
+            m_NumberOfDoors = (eNumberOfDoors)Enum.Parse(typeof(eNumberOfDoors), i_Properties["eNumberOfDoors"]);
         }
 
         public override string ToString()
