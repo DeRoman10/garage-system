@@ -108,8 +108,33 @@ namespace Ex03.ConsoleUI
 
             Console.WriteLine("Please enter vehicle owner's phone number");
             ownerPhoneNumber = Console.ReadLine();
+
+            List<VehiclePropertyInfo> typeSpecificInfo = m_Garage.AddVehicle(modelName, licenseNumber, vehicleType, ownerName, ownerPhoneNumber);
+
+            Dictionary<string, string> sp = setSpecificPropertiesForAddedVehicle(typeSpecificInfo);
         }
-        
+
+        private Dictionary<string, string> setSpecificPropertiesForAddedVehicle(List<VehiclePropertyInfo> typeSpecificInfo)
+        {
+            Dictionary<string, string> specificProperties = new Dictionary<string, string>();
+
+            Console.WriteLine("Please enter the following additional information:");
+
+            foreach (VehiclePropertyInfo vehiclePropertyInfo in typeSpecificInfo)
+            {
+                string currentPropertyValidOptions = string.Join("/", vehiclePropertyInfo.ValidValues);
+                string currentPropertyName = vehiclePropertyInfo.InternalName;
+
+                Console.WriteLine("{0}, options: {1}", vehiclePropertyInfo.DisplayName, currentPropertyValidOptions); ;
+
+                string userInput = Console.ReadLine();
+
+                specificProperties.Add(currentPropertyName, userInput);
+            }
+
+            return specificProperties;
+        }
+
         private void displayLicensePlates() { }
         private void changeVehicleStatus() { }
         private void inflateWheelsToMax() { }

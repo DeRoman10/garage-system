@@ -2,22 +2,22 @@
 {
     public class VehiclePropertyInfo
     {
-        private readonly string m_Name;
+        private readonly string m_InternalName;
         private readonly string m_DisplayName;
         private readonly string[] m_ValidValues;
 
         public VehiclePropertyInfo(string i_Name, string i_DisplayName, string[] i_ValidValues)
         {
-            m_Name = i_Name;
+            m_InternalName = i_Name;
             m_DisplayName = i_DisplayName;
             m_ValidValues = i_ValidValues;
         }
 
-        public string Name
+        public string InternalName
         {
             get
             {
-                return m_Name;
+                return m_InternalName;
             }
         }
 
