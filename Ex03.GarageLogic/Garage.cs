@@ -23,19 +23,21 @@ namespace Ex03.GarageLogic
             return newVehicle.GetRequiredProperties();
         }
 
-        public Dictionary<string, GarageTask> CarFilterByStatus(eVehicleStatus i_VehicleStatus)
+        public List<string> GetLicensePlatesByStatus(eVehicleStatus i_VehicleStatus)
         {
-            Dictionary<string, GarageTask> filteredTasks = new Dictionary<string, GarageTask>();
+            List<string> filteredPlates = new List<string>();
+
             foreach (string licenseNumber in m_Tasks.Keys)
             {
                 GarageTask currentTask = m_Tasks[licenseNumber];
+
                 if (currentTask.VehicleStatus == i_VehicleStatus)
                 {
-                    filteredTasks.Add(licenseNumber, currentTask);
+                    filteredPlates.Add(licenseNumber);
                 }
             }
 
-            return filteredTasks;
+            return filteredPlates;
         }
 
         public Vehicle GetVehicle(string i_LicenseNumber)
@@ -68,7 +70,6 @@ namespace Ex03.GarageLogic
 
         public void SetWheelProperties(string i_LicenseNumber, string i_ManufacturerName, float i_AirPressure)
         {
-            //I thought of adding validity check here but not sure how
             validateVehicleInGarage(i_LicenseNumber);
 
             foreach (Wheel wheel in m_Tasks[i_LicenseNumber].Vehicle.Wheels)
