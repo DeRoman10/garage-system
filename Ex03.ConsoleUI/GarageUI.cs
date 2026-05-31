@@ -167,13 +167,13 @@ namespace Ex03.ConsoleUI
             }
         }
 
-        private Dictionary<string, string> setSpecificPropertiesForAddedVehicle(List<VehiclePropertyInfo> typeSpecificInfo)
+        private Dictionary<string, string> setSpecificPropertiesForAddedVehicle(List<VehiclePropertyInfo> i_TypeSpecificInfo)
         {
             Dictionary<string, string> specificProperties = new Dictionary<string, string>();
 
             Console.WriteLine("Please enter the following additional information:");
 
-            foreach (VehiclePropertyInfo vehiclePropertyInfo in typeSpecificInfo)
+            foreach (VehiclePropertyInfo vehiclePropertyInfo in i_TypeSpecificInfo)
             {
                 string currentPropertyValidOptions = string.Join("/", vehiclePropertyInfo.ValidValues);
                 string currentPropertyName = vehiclePropertyInfo.InternalName;
