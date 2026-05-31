@@ -201,8 +201,6 @@ namespace Ex03.ConsoleUI
                 throw new ArgumentException("Invalid filter choice.");
             }
 
-            
-
             if (userFilterChoice == availableStatuses.Length + 1)
             {
                 licensePlatesToDisplay = m_Garage.GetAllLicensePlates();
