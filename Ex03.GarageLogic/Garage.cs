@@ -23,6 +23,21 @@ namespace Ex03.GarageLogic
             return newVehicle.GetRequiredPropertiesNames();
         }
 
+        public Dictionary<string, GarageTask> CarFilterByStatus(eVehicleStatus i_VehicleStatus)
+        {
+            Dictionary<string, GarageTask> filteredTasks = new Dictionary<string, GarageTask>();
+            foreach (string licenseNumber in m_Tasks.Keys)
+            {
+                GarageTask currentTask = m_Tasks[licenseNumber];
+                if (currentTask.VehicleStatus == i_VehicleStatus)
+                {
+                    filteredTasks.Add(licenseNumber, currentTask);
+                }
+            }
+
+            return filteredTasks;
+        }
+
         public Vehicle GetVehicle(string i_LicenseNumber)
         {
             validateVehicleInGarage(i_LicenseNumber);
