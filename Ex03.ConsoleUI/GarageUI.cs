@@ -27,7 +27,7 @@ namespace Ex03.ConsoleUI
             }
         }
 
-        internal eMenuOptions GetMenuChoice()
+        private eMenuOptions GetMenuChoice()
         {
             printMenu();
             
@@ -127,7 +127,14 @@ namespace Ex03.ConsoleUI
                 string currentPropertyValidOptions = string.Join("/", vehiclePropertyInfo.ValidValues);
                 string currentPropertyName = vehiclePropertyInfo.InternalName;
 
-                Console.WriteLine("{0}, options: {1}", vehiclePropertyInfo.DisplayName, currentPropertyValidOptions); ;
+                if (vehiclePropertyInfo.ValidValues.Length > 0)
+                {
+                    Console.WriteLine("{0}, options: {1}", vehiclePropertyInfo.DisplayName, currentPropertyValidOptions); ;
+                }
+                else
+                {
+                    Console.WriteLine("{0}:", vehiclePropertyInfo.DisplayName);
+                }
 
                 string userInput = Console.ReadLine();
 
