@@ -110,8 +110,10 @@ namespace Ex03.ConsoleUI
             ownerPhoneNumber = Console.ReadLine();
 
             List<VehiclePropertyInfo> typeSpecificInfo = m_Garage.AddVehicle(modelName, licenseNumber, vehicleType, ownerName, ownerPhoneNumber);
+            
+            Dictionary<string, string> properties = setSpecificPropertiesForAddedVehicle(typeSpecificInfo);
 
-            Dictionary<string, string> sp = setSpecificPropertiesForAddedVehicle(typeSpecificInfo);
+            m_Garage.SetVehicleProperties(licenseNumber, properties);
         }
 
         private Dictionary<string, string> setSpecificPropertiesForAddedVehicle(List<VehiclePropertyInfo> typeSpecificInfo)
