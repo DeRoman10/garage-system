@@ -55,8 +55,8 @@ namespace Ex03.GarageLogic
 
         public override void SetRequiredProperties(Dictionary<string, string> i_Properties)
         {
-            m_IsCarryingFreezingCargo = bool.Parse(i_Properties["Carrying freezing cargo (true/false)"]);
-            m_CargoVolume = float.Parse(i_Properties["Cargo volume"]);
+            m_IsCarryingFreezingCargo = bool.Parse(i_Properties["IsCarryingFreezingCargo"]);
+            m_CargoVolume = float.Parse(i_Properties["CargoVolume"]);
         }
 
         public override string ToString()
