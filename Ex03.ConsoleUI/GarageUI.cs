@@ -113,8 +113,16 @@ namespace Ex03.ConsoleUI
 
             Dictionary<string, string> properties = setSpecificPropertiesForAddedVehicle(typeSpecificInfo);
 
-            m_Garage.SetVehicleProperties(licenseNumber, properties);
-            
+            try
+            {
+                m_Garage.SetVehicleProperties(licenseNumber, properties);
+            }
+            catch
+            {
+                m_Garage.RemoveVehicle(licenseNumber);
+                throw;
+            }
+
             Console.WriteLine();
             Console.WriteLine("===========================");
             Console.WriteLine("Vehicle added successfully!");
@@ -188,14 +196,14 @@ namespace Ex03.ConsoleUI
             
             eVehicleStatus actualChosenFilter;
 
-            if (userFilterChoice - 1 < 0 || userFilterChoice - 1 > availableStatuses.Length) 
+            if (userFilterChoice - 1 < 0 || userFilterChoice - 1 > availableStatuses.Length + 1) 
             {
                 throw new ArgumentException("Invalid filter choice.");
             }
 
             
 
-            if (userFilterChoice == availableStatuses.Length)
+            if (userFilterChoice == availableStatuses.Length + 1)
             {
                 licensePlatesToDisplay = m_Garage.GetAllLicensePlates();
             }

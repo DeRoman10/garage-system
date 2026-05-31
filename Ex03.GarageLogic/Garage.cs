@@ -29,6 +29,12 @@ namespace Ex03.GarageLogic
             return newVehicle.GetRequiredProperties();
         }
 
+        public void RemoveVehicle(string i_LicenseNumber)
+        {
+            validateVehicleInGarage(i_LicenseNumber);
+            m_Tasks.Remove(i_LicenseNumber);
+        }
+
         public List<string> GetAllLicensePlates()
         {
             List<string> licensePlates = new List<string>();
