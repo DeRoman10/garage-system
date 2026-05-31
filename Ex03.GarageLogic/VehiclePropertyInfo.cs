@@ -9,6 +9,7 @@
         public VehiclePropertyInfo(string i_Name, string i_DisplayName, string[] i_ValidValues)
         {
             m_Name = i_Name;
+            m_DisplayName = i_DisplayName;
             m_ValidValues = i_ValidValues;
         }
 
