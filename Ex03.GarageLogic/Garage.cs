@@ -37,12 +37,7 @@ namespace Ex03.GarageLogic
 
         public List<string> GetAllLicensePlates()
         {
-            List<string> licensePlates = new List<string>();
-
-            foreach (string licensePlateNumber in m_Tasks.Keys)
-            {
-                licensePlates.Add(licensePlateNumber);
-            }
+            List<string> licensePlates = new List<string>(m_Tasks.Keys);
 
             return licensePlates;
         }
