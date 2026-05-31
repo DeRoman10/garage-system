@@ -124,17 +124,17 @@ namespace Ex03.ConsoleUI
 
         private string vehicleTypeInputHandler()
         {
+            printTypes();
+
             int userChoice = int.Parse(Console.ReadLine());
             string actualChosenType = string.Empty;
 
-            printTypes();
-            
             if (userChoice - 1 < 0 || userChoice - 1 >= VehicleCreator.SupportedTypes.Count)
             {
                 throw new ArgumentException("Unsupported vehicle type.");
             }
 
-            actualChosenType = VehicleCreator.SupportedTypes[userChoice];
+            actualChosenType = VehicleCreator.SupportedTypes[userChoice - 1];
 
             return actualChosenType;
         }
@@ -146,41 +146,6 @@ namespace Ex03.ConsoleUI
                 Console.WriteLine("{0}) {1}", i + 1, VehicleCreator.SupportedTypes[i]);
             }
         }
-
-        /*private string getChosenVehicleType(Dictionary<int, string> availableVehicleTypesNumbered)
-        {
-            int userChoice = int.Parse(Console.ReadLine());
-            string actualChosenType = string.Empty;
-
-            foreach (int currentTypeIndex in availableVehicleTypesNumbered.Keys)
-            {
-                if (userChoice == currentTypeIndex)
-                {
-                    actualChosenType = availableVehicleTypesNumbered[currentTypeIndex];
-                }
-            }
-
-            if (actualChosenType == string.Empty)
-            {
-                throw new ArgumentException("Unsupported vehicle type.");
-            }
-
-            return actualChosenType;
-        }
-
-        private Dictionary<int, string> createNumberedVehicleTypeDictionary()
-        {
-            Dictionary<int, string> availableVehicleTypesNumbered = new Dictionary<int, string>();
-            int currentOptionNumber = 1;
-
-            foreach (string availableVehicleType in VehicleCreator.SupportedTypes)
-            {
-                availableVehicleTypesNumbered.Add(currentOptionNumber, availableVehicleType);
-                currentOptionNumber++;
-            }
-
-            return availableVehicleTypesNumbered;
-        }*/
 
         private Dictionary<string, string> setSpecificPropertiesForAddedVehicle(List<VehiclePropertyInfo> typeSpecificInfo)
         {
