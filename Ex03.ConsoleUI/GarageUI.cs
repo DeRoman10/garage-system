@@ -16,7 +16,7 @@ namespace Ex03.ConsoleUI
             {
                 try
                 {
-                    eMenuOptions choice = GetMenuChoice();
+                    eMenuOptions choice = getMenuChoice();
 
                     exitRequested = executeMenuOption(choice);
                 }
@@ -27,7 +27,7 @@ namespace Ex03.ConsoleUI
             }
         }
 
-        private eMenuOptions GetMenuChoice()
+        private eMenuOptions getMenuChoice()
         {
             printMenu();
 
@@ -157,7 +157,7 @@ namespace Ex03.ConsoleUI
 
             if (actualChosenType == string.Empty)
             {
-                throw new ArgumentException("Invalid input");
+                throw new ArgumentException("Unsupported vehicle type.");
             }
 
             return actualChosenType;

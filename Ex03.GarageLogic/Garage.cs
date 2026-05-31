@@ -18,9 +18,9 @@ namespace Ex03.GarageLogic
 
             Vehicle newVehicle = VehicleCreator.CreateVehicle(i_VehicleType, i_LicenseNumber, i_ModelName);
             
-            while (newVehicle == null)
+            if (newVehicle == null)
             {
-
+                throw new ArgumentException("Unsupported vehicle type.");
             }
 
             GarageTask newTask = new GarageTask(i_OwnerName, i_OwnerPhoneNumber, newVehicle);
