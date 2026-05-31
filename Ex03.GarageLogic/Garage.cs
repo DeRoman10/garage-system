@@ -17,6 +17,12 @@ namespace Ex03.GarageLogic
             }
 
             Vehicle newVehicle = VehicleCreator.CreateVehicle(i_VehicleType, i_LicenseNumber, i_ModelName);
+            
+            while (newVehicle == null)
+            {
+
+            }
+
             GarageTask newTask = new GarageTask(i_OwnerName, i_OwnerPhoneNumber, newVehicle);
             m_Tasks.Add(i_LicenseNumber, newTask);
 

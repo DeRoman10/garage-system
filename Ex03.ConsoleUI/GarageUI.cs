@@ -30,9 +30,9 @@ namespace Ex03.ConsoleUI
         private eMenuOptions GetMenuChoice()
         {
             printMenu();
-            
+
             eMenuOptions choice = (eMenuOptions)Enum.Parse(typeof(eMenuOptions), Console.ReadLine());
-            
+
             return choice;
         }
 
@@ -100,8 +100,8 @@ namespace Ex03.ConsoleUI
             Console.WriteLine("Please enter vehicle's license plate number");
             licenseNumber = Console.ReadLine();
 
-            Console.WriteLine("Please enter vehicle's type");
-            vehicleType = Console.ReadLine();
+            Console.WriteLine("Please enter the corresponding number of the vehicle's type:");
+            vehicleType = vehicleTypeInputHandler();
 
             Console.WriteLine("Please enter vehicle owner's full name");
             ownerName = Console.ReadLine();
@@ -110,10 +110,71 @@ namespace Ex03.ConsoleUI
             ownerPhoneNumber = Console.ReadLine();
 
             List<VehiclePropertyInfo> typeSpecificInfo = m_Garage.AddVehicle(modelName, licenseNumber, vehicleType, ownerName, ownerPhoneNumber);
-            
+
             Dictionary<string, string> properties = setSpecificPropertiesForAddedVehicle(typeSpecificInfo);
 
             m_Garage.SetVehicleProperties(licenseNumber, properties);
+            
+            Console.WriteLine();
+            Console.WriteLine("===========================");
+            Console.WriteLine("Vehicle added successfully!");
+            Console.WriteLine("===========================");
+            Console.WriteLine();
+        }
+
+        private string vehicleTypeInputHandler()
+        {
+            Dictionary<int, string> availableVehicleTypesNumbered = createNumberedVehicleTypeDictionary();
+            string actualChosenType = string.Empty;
+
+            printTypes(availableVehicleTypesNumbered);
+            
+            actualChosenType = getChosenVehicleType(availableVehicleTypesNumbered);
+
+            return actualChosenType;
+        }
+
+        private void printTypes(Dictionary<int, string> availableVehicleTypesNumbered)
+        {
+            foreach(int currentTypeIndex in availableVehicleTypesNumbered.Keys)
+            {
+                Console.WriteLine("{0}) {1}", currentTypeIndex, availableVehicleTypesNumbered[currentTypeIndex]);
+            }
+        }
+
+        private string getChosenVehicleType(Dictionary<int, string> availableVehicleTypesNumbered)
+        {
+            int userChoice = int.Parse(Console.ReadLine());
+            string actualChosenType = string.Empty;
+
+            foreach (int currentTypeIndex in availableVehicleTypesNumbered.Keys)
+            {
+                if (userChoice == currentTypeIndex)
+                {
+                    actualChosenType = availableVehicleTypesNumbered[currentTypeIndex];
+                }
+            }
+
+            if (actualChosenType == string.Empty)
+            {
+                throw new ArgumentException("Invalid input");
+            }
+
+            return actualChosenType;
+        }
+
+        private Dictionary<int, string> createNumberedVehicleTypeDictionary()
+        {
+            Dictionary<int, string> availableVehicleTypesNumbered = new Dictionary<int, string>();
+            int currentOptionNumber = 1;
+
+            foreach (string availableVehicleType in VehicleCreator.SupportedTypes)
+            {
+                availableVehicleTypesNumbered.Add(currentOptionNumber, availableVehicleType);
+                currentOptionNumber++;
+            }
+
+            return availableVehicleTypesNumbered;
         }
 
         private Dictionary<string, string> setSpecificPropertiesForAddedVehicle(List<VehiclePropertyInfo> typeSpecificInfo)
