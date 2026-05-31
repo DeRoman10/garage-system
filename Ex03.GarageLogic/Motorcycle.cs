@@ -39,20 +39,21 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public override Dictionary<string, string> GetRequiredPropertiesNames()
+        public override List<VehiclePropertyInfo> GetRequiredProperties()
         {
-            Dictionary<string, string> motorcycleSpecificProperties = new Dictionary<string, string>();
+            List<VehiclePropertyInfo> motorcycleSpecificProperties = new List<VehiclePropertyInfo>();
 
-            motorcycleSpecificProperties.Add("License type (A/A2/B1/AB)", "");
-            motorcycleSpecificProperties.Add("Engine volume (cc)", "");
+            motorcycleSpecificProperties.Add(new VehiclePropertyInfo("LicenseType", Enum.GetNames(typeof(eVehicleLicenseType))));
+
+            motorcycleSpecificProperties.Add(new VehiclePropertyInfo("EngineVolume", new string[0]));
 
             return motorcycleSpecificProperties;
         }
 
         public override void SetRequiredProperties(Dictionary<string, string> i_Properties)
         {
-            m_LicenseType = (eVehicleLicenseType)Enum.Parse(typeof(eVehicleLicenseType), i_Properties["License type (A/A2/B1/AB)"]);
-            m_EngineVolume = int.Parse(i_Properties["Engine volume (cc)"]);
+            m_LicenseType = (eVehicleLicenseType)Enum.Parse(typeof(eVehicleLicenseType), i_Properties["LicenseType"]);
+            m_EngineVolume = int.Parse(i_Properties["EngineVolume"]);
         }
 
         public override string ToString()

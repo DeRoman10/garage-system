@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 
@@ -42,12 +41,14 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public override Dictionary<string, string> GetRequiredPropertiesNames()
+        public override List<VehiclePropertyInfo> GetRequiredProperties()
         {
-            Dictionary<string, string> truckSpecificProperties = new Dictionary<string, string>();
+            List<VehiclePropertyInfo> truckSpecificProperties = new List<VehiclePropertyInfo>();
+            string[] carryingFreezingCargoOptions = { "true", "false" };
 
-            truckSpecificProperties.Add("Carrying freezing cargo (true/false)", "");
-            truckSpecificProperties.Add("Cargo volume", "");
+            truckSpecificProperties.Add(new VehiclePropertyInfo("IsCarryingFreezingCargo", carryingFreezingCargoOptions));
+            
+            truckSpecificProperties.Add(new VehiclePropertyInfo("CargoVolume", new string[0]));
 
             return truckSpecificProperties;
         }

@@ -7,7 +7,7 @@ namespace Ex03.GarageLogic
     {
         private Dictionary<string, GarageTask> m_Tasks = new Dictionary<string, GarageTask>();
 
-        public Dictionary<string, string> AddVehicle(string i_ModelName, string i_LicenseNumber, string i_VehicleType, string i_OwnerName, string i_OwnerPhoneNumber)
+        public List<VehiclePropertyInfo> AddVehicle(string i_ModelName, string i_LicenseNumber, string i_VehicleType, string i_OwnerName, string i_OwnerPhoneNumber)
         {
 
             if (m_Tasks.ContainsKey(i_LicenseNumber))
@@ -20,7 +20,7 @@ namespace Ex03.GarageLogic
             GarageTask newTask = new GarageTask(i_OwnerName, i_OwnerPhoneNumber, newVehicle);
             m_Tasks.Add(i_LicenseNumber, newTask);
 
-            return newVehicle.GetRequiredPropertiesNames();
+            return newVehicle.GetRequiredProperties();
         }
 
         public Dictionary<string, GarageTask> CarFilterByStatus(eVehicleStatus i_VehicleStatus)
@@ -74,7 +74,7 @@ namespace Ex03.GarageLogic
             foreach (Wheel wheel in m_Tasks[i_LicenseNumber].Vehicle.Wheels)
             {
                 wheel.ManufacturerName = i_ManufacturerName;
-                
+                wheel.AddAir(i_AirPressure);
             }
         }
 
@@ -103,6 +103,8 @@ namespace Ex03.GarageLogic
 
         public void SetInitialEnergyByPercentage(string i_LicenseNumber, float i_EnergyPercentage)
         {
+            validateVehicleInGarage(i_LicenseNumber);
+
             if (i_EnergyPercentage < 0 || i_EnergyPercentage > 100)
             {
                 throw new ValueRangeException(0, 100);
