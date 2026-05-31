@@ -29,6 +29,18 @@ namespace Ex03.GarageLogic
             return newVehicle.GetRequiredProperties();
         }
 
+        public List<string> GetAllLicensePlates()
+        {
+            List<string> licensePlates = new List<string>();
+
+            foreach (string licensePlateNumber in m_Tasks.Keys)
+            {
+                licensePlates.Add(licensePlateNumber);
+            }
+
+            return licensePlates;
+        }
+
         public List<string> GetLicensePlatesByStatus(eVehicleStatus i_VehicleStatus)
         {
             List<string> filteredPlates = new List<string>();

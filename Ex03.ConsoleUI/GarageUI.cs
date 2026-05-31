@@ -63,7 +63,7 @@ namespace Ex03.ConsoleUI
                     addVehicle();
                     break;
                 case eMenuOptions.DisplayLicensePlates:
-                    displayLicensePlates();
+                    displayLicensePlatesHandler();
                     break;
                 case eMenuOptions.ChangeVehicleStatus:
                     changeVehicleStatus();
@@ -175,7 +175,54 @@ namespace Ex03.ConsoleUI
             return specificProperties;
         }
 
-        private void displayLicensePlates() { }
+        private void displayLicensePlatesHandler()
+        {
+            eVehicleStatus[] availableStatuses = (eVehicleStatus[])Enum.GetValues(typeof(eVehicleStatus));
+            List<string> licensePlatesToDisplay = new List<string>();
+
+            Console.WriteLine("Choose a status to filter by or none for full list:");
+
+            printFilterOptions(availableStatuses);
+
+            int userFilterChoice = int.Parse(Console.ReadLine());
+            
+            eVehicleStatus actualChosenFilter;
+
+            if (userFilterChoice - 1 < 0 || userFilterChoice - 1 > availableStatuses.Length) 
+            {
+                throw new ArgumentException("Invalid filter choice.");
+            }
+
+            
+
+            if (userFilterChoice == availableStatuses.Length)
+            {
+                licensePlatesToDisplay = m_Garage.GetAllLicensePlates();
+            }
+            else
+            {
+                actualChosenFilter = availableStatuses[userFilterChoice - 1];
+                licensePlatesToDisplay = m_Garage.GetLicensePlatesByStatus(actualChosenFilter);
+            }
+
+            foreach (string licenseNumber in licensePlatesToDisplay)
+            {
+                Console.WriteLine(licenseNumber);
+            }
+        }
+
+        private void printFilterOptions(eVehicleStatus[] i_AvailableStatuses)
+        {
+
+            for (int i = 0; i < i_AvailableStatuses.Length; i++)
+            {
+                Console.WriteLine("{0}) {1}", i + 1, i_AvailableStatuses[i]);
+            }
+
+            Console.WriteLine("{0}) None", i_AvailableStatuses.Length + 1);
+
+        }
+
         private void changeVehicleStatus() { }
         private void inflateWheelsToMax() { }
         private void refuelVehicle() { }
