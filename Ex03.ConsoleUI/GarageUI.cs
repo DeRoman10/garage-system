@@ -10,11 +10,13 @@ namespace Ex03.ConsoleUI
 
         private readonly AddVehicleUI r_AddVehicleUI;
         private readonly InventoryUI r_InventoryUI;
+        private readonly VehicleStatusUI r_vehicleStatusUI;
 
         public GarageUI()
         {
             r_AddVehicleUI = new AddVehicleUI(r_Garage);
             r_InventoryUI = new InventoryUI(r_Garage);
+            r_vehicleStatusUI = new VehicleStatusUI(r_Garage);
         }
 
         public void Run()
@@ -75,7 +77,7 @@ namespace Ex03.ConsoleUI
                     r_InventoryUI.displayLicensePlatesHandler();
                     break;
                 case eMenuOptions.ChangeVehicleStatus:
-                    changeVehicleStatus();
+                    r_vehicleStatusUI.ChangeVehicleStatus();
                     break;
                 case eMenuOptions.InflateWheelsToMax:
                     inflateWheelsToMax();
