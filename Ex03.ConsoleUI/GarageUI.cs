@@ -105,6 +105,39 @@ namespace Ex03.ConsoleUI
         }
 
         private void loadFromFile() { }
-        private void displayVehicleInfo() { }
+        private void displayVehicleInfo() 
+        {
+            Console.WriteLine("Enter the license plate of the vehicle:");
+            string licensePlate = Console.ReadLine();
+
+            GarageTask task = r_Garage.GetTask(licensePlate);
+
+            Console.WriteLine("======= Garage Record ======");
+            Console.WriteLine("Owner name:  {0}" , task.OwnerName);
+            Console.WriteLine("Owner phone: {0}", task.OwnerPhone);
+            Console.WriteLine("Status:      {0}", task.VehicleStatus);
+            Console.WriteLine();
+
+            Console.WriteLine("======= Vehicle Info =======");
+            Console.WriteLine("Model name:    {0}" , task.Vehicle.ModelName);
+            Console.WriteLine("License plate: {0}", task.Vehicle.LicenseNumber);
+
+            Console.WriteLine("Wheel manufacturer: {0}", task.Vehicle.Wheels[0].ManufacturerName);
+            Console.WriteLine("Wheel air pressure: {0}", task.Vehicle.Wheels[0].CurrentAirPressure);
+
+            Dictionary<string, string> energyInfo = task.Vehicle.EnergySource.GetEnergyDetails();
+            printDictionaryDetails(energyInfo);
+
+            Dictionary<string, string> uniqueDetails = task.Vehicle.GetUniqueVehicleDetails();
+            printDictionaryDetails(uniqueDetails);
+            Console.WriteLine();
+        }
+        private void printDictionaryDetails(Dictionary<string, string> i_Details)
+        {
+            foreach (string key in i_Details.Keys)
+            {
+                Console.WriteLine("{0}: {1}", key, i_Details[key]);
+            }
+        }
     }
 }

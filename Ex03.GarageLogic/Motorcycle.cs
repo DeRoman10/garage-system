@@ -50,6 +50,16 @@ namespace Ex03.GarageLogic
             return motorcycleSpecificProperties;
         }
 
+        public override Dictionary<string, string> GetUniqueVehicleDetails()
+        {
+            Dictionary<string, string> details = new Dictionary<string, string>();
+
+            details.Add("License Type", m_LicenseType.ToString());
+            details.Add("Engine Volume", m_EngineVolume.ToString());
+
+            return details;
+        }
+
         public override void SetRequiredProperties(Dictionary<string, string> i_Properties)
         {
             m_LicenseType = (eVehicleLicenseType)Enum.Parse(typeof(eVehicleLicenseType), i_Properties["LicenseType"]);

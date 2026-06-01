@@ -20,7 +20,13 @@ namespace Ex03.ConsoleUI
             
             Vehicle selectedVehicle = r_Garage.GetVehicle(userLicensePlate);
             selectedVehicle.InflateWheelsToMax();
-            Console.WriteLine("Task done , your wheel pressure is now {0}" , selectedVehicle.Wheels[0].MaximumAirPressure);
+            
+
+            Console.WriteLine();
+            Console.WriteLine("=============================");
+            Console.WriteLine("your wheel pressure is now {0}", selectedVehicle.Wheels[0].MaximumAirPressure);
+            Console.WriteLine("=============================");
+            Console.WriteLine();
         }
     }
 }

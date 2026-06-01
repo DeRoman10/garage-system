@@ -50,6 +50,16 @@ namespace Ex03.GarageLogic
             return carSpecificProperties;
         }
 
+        public override Dictionary<string, string> GetUniqueVehicleDetails()
+        {
+            Dictionary<string, string> details = new Dictionary<string, string>();
+
+            details.Add("Color", m_CarColor.ToString());
+            details.Add("Number of Doors", m_NumberOfDoors.ToString());
+
+            return details;
+        }
+
         public override void SetRequiredProperties(Dictionary<string, string> i_Properties)
         {
             m_CarColor = (eColor)Enum.Parse(typeof(eColor), i_Properties["eColor"]);

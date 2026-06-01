@@ -34,6 +34,11 @@ namespace Ex03.ConsoleUI
 
             eVehicleStatus actualChosenFilter = availableStatuses[userFilterChoice - 1];
             selectedtask.VehicleStatus = actualChosenFilter;
+            Console.WriteLine();
+            Console.WriteLine("====================================");
+            Console.WriteLine("Vehicle status changed successfully!");
+            Console.WriteLine("====================================");
+            Console.WriteLine();
 
 
         }

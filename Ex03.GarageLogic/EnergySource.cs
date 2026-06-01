@@ -1,4 +1,6 @@
-﻿namespace Ex03.GarageLogic
+﻿using System.Collections.Generic;
+
+namespace Ex03.GarageLogic
 {
     public abstract class EnergySource
     {
@@ -20,7 +22,7 @@
             }
         }
 
-        public abstract string GetEnergyDetails();
+        public abstract Dictionary<string, string> GetEnergyDetails();
 
         public void AddEnergy(float i_EnergyToAdd)
         {

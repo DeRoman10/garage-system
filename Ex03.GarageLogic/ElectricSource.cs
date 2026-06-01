@@ -1,4 +1,6 @@
-﻿namespace Ex03.GarageLogic
+﻿using System.Collections.Generic;
+
+namespace Ex03.GarageLogic
 {
     public class ElectricSource : EnergySource
     {
@@ -8,10 +10,13 @@
             m_MaxEnergyCapacity = i_MaxBatteryLife;
         }
 
-        public override string GetEnergyDetails()
+        public override Dictionary<string, string> GetEnergyDetails()
         {
-            return string.Format(
-                "Battery left: {0} hours, Max battery: {1} hours", m_EnergyLeft, m_MaxEnergyCapacity);
+            Dictionary<string, string> energyDetails = new Dictionary<string, string>();
+
+            energyDetails.Add("Current Energy", m_EnergyLeft.ToString());
+
+            return energyDetails;
         }
 
         public void ChargeBattery(float i_HoursToCharge)

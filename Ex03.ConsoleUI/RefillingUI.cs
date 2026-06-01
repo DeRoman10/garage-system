@@ -25,7 +25,7 @@ namespace Ex03.ConsoleUI
             if (vehicleToRefill.EnergySource is FuelSource)
             {
                 eFuelType[] availableFuelType = (eFuelType[])Enum.GetValues(typeof(eFuelType));
-                Console.WriteLine("This is a fuel-based vehicle.");
+                Console.WriteLine("This is a fuel based vehicle.");
 
                 printFilterOptions(availableFuelType);
                 int userChoosenFuel = int.Parse(Console.ReadLine());
@@ -40,7 +40,13 @@ namespace Ex03.ConsoleUI
                 float liters = float.Parse(Console.ReadLine());
 
                 vehicleToRefill.Refuel(actualUserChoosenFuel, liters);
+                
+                Console.WriteLine();
+                Console.WriteLine("=============================");
                 Console.WriteLine("Vehicle refueled successfully!");
+                Console.WriteLine("=============================");
+                Console.WriteLine();
+
             }
             else if (vehicleToRefill.EnergySource is ElectricSource)
             {
@@ -50,7 +56,13 @@ namespace Ex03.ConsoleUI
                 float minutes = float.Parse(Console.ReadLine());
 
                 vehicleToRefill.Charge(minutes / 60f);
+                
+                Console.WriteLine();
+                Console.WriteLine("=============================");
                 Console.WriteLine("Vehicle charged successfully!");
+                Console.WriteLine("=============================");
+                Console.WriteLine();
+
             }
             else
             {

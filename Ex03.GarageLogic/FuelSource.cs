@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 namespace Ex03.GarageLogic
 {
     public class FuelSource : EnergySource
@@ -20,10 +21,14 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public override string GetEnergyDetails()
+        public override Dictionary<string, string> GetEnergyDetails()
         {
-            return string.Format(
-                "Fuel type: {0}, Current fuel: {1}, Max fuel: {2}", m_FuelType, m_EnergyLeft, m_MaxEnergyCapacity);
+            Dictionary<string, string> energyDetails = new Dictionary<string, string>();
+
+            energyDetails.Add("Fuel type", m_FuelType.ToString());
+            energyDetails.Add("Current fuel", m_EnergyLeft.ToString());
+
+            return energyDetails;
         }
 
         public void Refuel(eFuelType i_FuelType, float i_LitersToAdd)
@@ -35,5 +40,6 @@ namespace Ex03.GarageLogic
 
             AddEnergy(i_LitersToAdd);
         }
+
     }
 }
