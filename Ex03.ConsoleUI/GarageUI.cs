@@ -6,7 +6,23 @@ namespace Ex03.ConsoleUI
 {
     public class GarageUI
     {
-        private readonly Garage m_Garage = new Garage();
+        private readonly Garage r_Garage = new Garage();
+
+        private readonly AddVehicleUI r_AddVehicleUI;
+        private readonly InventoryUI r_InventoryUI;
+        private readonly VehicleStatusUI r_VehicleStatusUI;
+        private readonly WheelServiceUI r_WheelServiceUI;
+        private readonly RefillingUI r_RefuellingUI;
+
+
+        public GarageUI()
+        {
+            r_AddVehicleUI = new AddVehicleUI(r_Garage);
+            r_InventoryUI = new InventoryUI(r_Garage);
+            r_VehicleStatusUI = new VehicleStatusUI(r_Garage);
+            r_WheelServiceUI = new WheelServiceUI(r_Garage);
+            r_RefuellingUI = new RefillingUI(r_Garage);
+        }
 
         public void Run()
         {
@@ -60,22 +76,22 @@ namespace Ex03.ConsoleUI
                     loadFromFile();
                     break;
                 case eMenuOptions.AddVehicle:
-                    addVehicle();
+                    r_AddVehicleUI.AddVehicle();
                     break;
                 case eMenuOptions.DisplayLicensePlates:
-                    displayLicensePlatesHandler();
+                    r_InventoryUI.displayLicensePlatesHandler();
                     break;
                 case eMenuOptions.ChangeVehicleStatus:
-                    changeVehicleStatus();
+                    r_VehicleStatusUI.ChangeVehicleStatus();
                     break;
                 case eMenuOptions.InflateWheelsToMax:
-                    inflateWheelsToMax();
+                    r_WheelServiceUI.inflateWheelsToMax();
                     break;
                 case eMenuOptions.RefuelVehicle:
-                    refuelVehicle();
+                    r_RefuellingUI.RefillVehicle();
                     break;
                 case eMenuOptions.ChargeVehicle:
-                    chargeVehicle();
+                    r_RefuellingUI.RefillVehicle();
                     break;
                 case eMenuOptions.DisplayVehicleInfo:
                     displayVehicleInfo();
@@ -89,162 +105,39 @@ namespace Ex03.ConsoleUI
         }
 
         private void loadFromFile() { }
-
-        private void addVehicle()
+        private void displayVehicleInfo() 
         {
-            string modelName, licenseNumber, vehicleType, ownerName, ownerPhoneNumber, wheelManufacturerName;
-            float airPressure = 0, energyPercentage = 0;
+            Console.WriteLine("Enter the license plate of the vehicle:");
+            string licensePlate = Console.ReadLine();
 
-            Console.WriteLine("Please enter vehicle model's name");
-            modelName = Console.ReadLine();
+            GarageTask task = r_Garage.GetTask(licensePlate);
 
-            Console.WriteLine("Please enter vehicle's license plate number");
-            licenseNumber = Console.ReadLine();
-
-            Console.WriteLine("Please enter the corresponding number of the vehicle's type:");
-            vehicleType = vehicleTypeInputHandler();
-
-            Console.WriteLine("Please enter wheel's manufacturer name:");
-            wheelManufacturerName = Console.ReadLine();
-
-            Console.WriteLine("Please enter wheel's current air pressure:");
-            airPressure = float.Parse(Console.ReadLine());
-
-            Console.WriteLine("Please enter vehicle's current energy level %:");
-            energyPercentage = float.Parse(Console.ReadLine());
-
-            Console.WriteLine("Please enter vehicle owner's full name");
-            ownerName = Console.ReadLine();
-
-            Console.WriteLine("Please enter vehicle owner's phone number");
-            ownerPhoneNumber = Console.ReadLine();
-
-            List<VehiclePropertyInfo> typeSpecificInfo = m_Garage.AddVehicle(modelName, licenseNumber, vehicleType, ownerName, ownerPhoneNumber);
-
-            Dictionary<string, string> properties = setSpecificPropertiesForAddedVehicle(typeSpecificInfo);
-
-            try
-            {
-                m_Garage.SetVehicleProperties(licenseNumber, properties);
-                m_Garage.SetWheelProperties(licenseNumber, wheelManufacturerName, airPressure);
-                m_Garage.SetInitialEnergyByPercentage(licenseNumber, energyPercentage);
-            }
-            catch
-            {
-                m_Garage.RemoveVehicle(licenseNumber);
-                throw;
-            }
-
+            Console.WriteLine("======= Garage Record ======");
+            Console.WriteLine("Owner name:  {0}" , task.OwnerName);
+            Console.WriteLine("Owner phone: {0}", task.OwnerPhone);
+            Console.WriteLine("Status:      {0}", task.VehicleStatus);
             Console.WriteLine();
-            Console.WriteLine("===========================");
-            Console.WriteLine("Vehicle added successfully!");
-            Console.WriteLine("===========================");
+
+            Console.WriteLine("======= Vehicle Info =======");
+            Console.WriteLine("Model name:    {0}" , task.Vehicle.ModelName);
+            Console.WriteLine("License plate: {0}", task.Vehicle.LicenseNumber);
+
+            Console.WriteLine("Wheel manufacturer: {0}", task.Vehicle.Wheels[0].ManufacturerName);
+            Console.WriteLine("Wheel air pressure: {0}", task.Vehicle.Wheels[0].CurrentAirPressure);
+
+            Dictionary<string, string> energyInfo = task.Vehicle.EnergySource.GetEnergyDetails();
+            printDictionaryDetails(energyInfo);
+
+            Dictionary<string, string> uniqueDetails = task.Vehicle.GetUniqueVehicleDetails();
+            printDictionaryDetails(uniqueDetails);
             Console.WriteLine();
         }
-
-        private string vehicleTypeInputHandler()
+        private void printDictionaryDetails(Dictionary<string, string> i_Details)
         {
-            printTypes();
-
-            int userChoice = int.Parse(Console.ReadLine());
-            string actualChosenType = string.Empty;
-
-            if (userChoice - 1 < 0 || userChoice - 1 >= VehicleCreator.SupportedTypes.Count)
+            foreach (string key in i_Details.Keys)
             {
-                throw new ArgumentException("Unsupported vehicle type.");
-            }
-
-            actualChosenType = VehicleCreator.SupportedTypes[userChoice - 1];
-
-            return actualChosenType;
-        }
-
-        private void printTypes()
-        {
-            for (int i = 0; i < VehicleCreator.SupportedTypes.Count; i++)
-            {
-                Console.WriteLine("{0}) {1}", i + 1, VehicleCreator.SupportedTypes[i]);
+                Console.WriteLine("{0}: {1}", key, i_Details[key]);
             }
         }
-
-        private Dictionary<string, string> setSpecificPropertiesForAddedVehicle(List<VehiclePropertyInfo> i_TypeSpecificInfo)
-        {
-            Dictionary<string, string> specificProperties = new Dictionary<string, string>();
-
-            Console.WriteLine("Please enter the following additional information:");
-
-            foreach (VehiclePropertyInfo vehiclePropertyInfo in i_TypeSpecificInfo)
-            {
-                string currentPropertyValidOptions = string.Join("/", vehiclePropertyInfo.ValidValues);
-                string currentPropertyName = vehiclePropertyInfo.InternalName;
-
-                if (vehiclePropertyInfo.ValidValues.Length > 0)
-                {
-                    Console.WriteLine("{0}, options: {1}", vehiclePropertyInfo.DisplayName, currentPropertyValidOptions); ;
-                }
-                else
-                {
-                    Console.WriteLine("{0}:", vehiclePropertyInfo.DisplayName);
-                }
-
-                string userInput = Console.ReadLine();
-
-                specificProperties.Add(currentPropertyName, userInput);
-            }
-
-            return specificProperties;
-        }
-
-        private void displayLicensePlatesHandler()
-        {
-            eVehicleStatus[] availableStatuses = (eVehicleStatus[])Enum.GetValues(typeof(eVehicleStatus));
-            List<string> licensePlatesToDisplay = new List<string>();
-
-            Console.WriteLine("Choose a status to filter by or none for full list:");
-
-            printFilterOptions(availableStatuses);
-
-            int userFilterChoice = int.Parse(Console.ReadLine());
-            
-            eVehicleStatus actualChosenFilter;
-
-            if (userFilterChoice - 1 < 0 || userFilterChoice - 1 > availableStatuses.Length + 1) 
-            {
-                throw new ArgumentException("Invalid filter choice.");
-            }
-
-            if (userFilterChoice == availableStatuses.Length + 1)
-            {
-                licensePlatesToDisplay = m_Garage.GetAllLicensePlates();
-            }
-            else
-            {
-                actualChosenFilter = availableStatuses[userFilterChoice - 1];
-                licensePlatesToDisplay = m_Garage.GetLicensePlatesByStatus(actualChosenFilter);
-            }
-
-            foreach (string licenseNumber in licensePlatesToDisplay)
-            {
-                Console.WriteLine(licenseNumber);
-            }
-        }
-
-        private void printFilterOptions(eVehicleStatus[] i_AvailableStatuses)
-        {
-
-            for (int i = 0; i < i_AvailableStatuses.Length; i++)
-            {
-                Console.WriteLine("{0}) {1}", i + 1, i_AvailableStatuses[i]);
-            }
-
-            Console.WriteLine("{0}) None", i_AvailableStatuses.Length + 1);
-
-        }
-
-        private void changeVehicleStatus() { }
-        private void inflateWheelsToMax() { }
-        private void refuelVehicle() { }
-        private void chargeVehicle() { }
-        private void displayVehicleInfo() { }
     }
 }

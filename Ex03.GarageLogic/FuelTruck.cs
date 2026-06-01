@@ -53,6 +53,16 @@ namespace Ex03.GarageLogic
             return truckSpecificProperties;
         }
 
+        public override Dictionary<string, string> GetUniqueVehicleDetails()
+        {
+            Dictionary<string, string> details = new Dictionary<string, string>();
+
+            details.Add("Is Carrying Freezing Cargo", IsCarryingFreezingCargo.ToString());
+            details.Add("Cargo Volume", m_CargoVolume.ToString());
+
+            return details;
+        }
+
         public override void SetRequiredProperties(Dictionary<string, string> i_Properties)
         {
             m_IsCarryingFreezingCargo = bool.Parse(i_Properties["IsCarryingFreezingCargo"]);

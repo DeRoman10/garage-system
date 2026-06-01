@@ -36,9 +36,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addVehicleUI.cs" />
     <Compile Include="eMenuOptions.cs" />
     <Compile Include="GarageUI.cs" />
+    <Compile Include="InventoryUI.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="RefillingUI.cs" />
+    <Compile Include="VehicleStatusUI.cs" />
+    <Compile Include="WheelServiceUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ex03.GarageLogic\Ex03.GarageLogic.csproj">
