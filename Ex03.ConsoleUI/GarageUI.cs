@@ -10,16 +10,18 @@ namespace Ex03.ConsoleUI
 
         private readonly AddVehicleUI r_AddVehicleUI;
         private readonly InventoryUI r_InventoryUI;
-        private readonly VehicleStatusUI r_vehicleStatusUI;
-        private readonly WheelServiceUI r_wheelServiceUI;
+        private readonly VehicleStatusUI r_VehicleStatusUI;
+        private readonly WheelServiceUI r_WheelServiceUI;
+        private readonly RefillingUI r_RefuellingUI;
 
 
         public GarageUI()
         {
             r_AddVehicleUI = new AddVehicleUI(r_Garage);
             r_InventoryUI = new InventoryUI(r_Garage);
-            r_vehicleStatusUI = new VehicleStatusUI(r_Garage);
-            r_wheelServiceUI = new WheelServiceUI(r_Garage);
+            r_VehicleStatusUI = new VehicleStatusUI(r_Garage);
+            r_WheelServiceUI = new WheelServiceUI(r_Garage);
+            r_RefuellingUI = new RefillingUI(r_Garage);
         }
 
         public void Run()
@@ -80,16 +82,16 @@ namespace Ex03.ConsoleUI
                     r_InventoryUI.displayLicensePlatesHandler();
                     break;
                 case eMenuOptions.ChangeVehicleStatus:
-                    r_vehicleStatusUI.ChangeVehicleStatus();
+                    r_VehicleStatusUI.ChangeVehicleStatus();
                     break;
                 case eMenuOptions.InflateWheelsToMax:
-                    r_wheelServiceUI.inflateWheelsToMax();
+                    r_WheelServiceUI.inflateWheelsToMax();
                     break;
                 case eMenuOptions.RefuelVehicle:
-                    refuelVehicle();
+                    r_RefuellingUI.RefillVehicle();
                     break;
                 case eMenuOptions.ChargeVehicle:
-                    chargeVehicle();
+                    r_RefuellingUI.RefillVehicle();
                     break;
                 case eMenuOptions.DisplayVehicleInfo:
                     displayVehicleInfo();
@@ -103,8 +105,6 @@ namespace Ex03.ConsoleUI
         }
 
         private void loadFromFile() { }
-        private void refuelVehicle() { }
-        private void chargeVehicle() { }
         private void displayVehicleInfo() { }
     }
 }
