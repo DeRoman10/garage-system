@@ -2,16 +2,16 @@
 {
     public class GarageTask
     {
-        private string m_OwnerName;
-        private string m_OwnerPhoneNumber;
+        private readonly string r_OwnerName;
+        private readonly string r_OwnerPhoneNumber;
+        private readonly Vehicle r_Vehicle;
         private eVehicleStatus m_VehicleStatus;
-        private Vehicle m_Vehicle;
-
+        
         public GarageTask(string i_OwnerName, string i_OwnerPhone, Vehicle i_Vehicle)
         {
-            m_OwnerName = i_OwnerName;
-            m_OwnerPhoneNumber = i_OwnerPhone;
-            m_Vehicle = i_Vehicle;
+            r_OwnerName = i_OwnerName;
+            r_OwnerPhoneNumber = i_OwnerPhone;
+            r_Vehicle = i_Vehicle;
             m_VehicleStatus = eVehicleStatus.OnRepair;
         }
 
@@ -31,7 +31,7 @@
         {
             get
             {
-                return m_Vehicle;
+                return r_Vehicle;
             }
         }
 
@@ -39,7 +39,7 @@
         {
             get
             {
-                return m_OwnerName;
+                return r_OwnerName;
             }
         }
 
@@ -47,7 +47,7 @@
         {
             get
             {
-                return m_OwnerPhoneNumber;
+                return r_OwnerPhoneNumber;
             }
         }
     }

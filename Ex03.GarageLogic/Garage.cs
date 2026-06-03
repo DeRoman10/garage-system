@@ -12,7 +12,6 @@ namespace Ex03.GarageLogic
 
             if (m_Tasks.ContainsKey(i_LicenseNumber))
             {
-                m_Tasks[i_LicenseNumber].VehicleStatus = eVehicleStatus.OnRepair;
                 throw new ArgumentException("Car is already in garage.");
             }
 
