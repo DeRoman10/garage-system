@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
-    public class Motorcycle : Vehicle
+    public abstract class Motorcycle : Vehicle
     {
         private eVehicleLicenseType m_LicenseType;
         private int m_EngineVolume;

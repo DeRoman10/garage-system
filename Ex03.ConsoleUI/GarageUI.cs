@@ -4,7 +4,7 @@ using Ex03.GarageLogic;
 
 namespace Ex03.ConsoleUI
 {
-    public class GarageUI
+    internal class GarageUI
     {
         private readonly Garage r_Garage = new Garage();
 
