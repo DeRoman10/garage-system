@@ -47,9 +47,18 @@ namespace Ex03.ConsoleUI
         {
             printMenu();
 
-            eMenuOptions choice = (eMenuOptions)Enum.Parse(typeof(eMenuOptions), Console.ReadLine());
+            int userInput = int.Parse(Console.ReadLine());
+            eMenuOptions[] options = (eMenuOptions[])Enum.GetValues(typeof(eMenuOptions));
+            
+            int minValue = (int)options[0];
+            int maxValue = (int)options[options.Length - 1];
 
-            return choice;
+            if (userInput < minValue || userInput > maxValue)
+            {
+                throw new ValueRangeException(minValue, maxValue);
+            }
+
+            return (eMenuOptions)userInput;
         }
 
         private void printMenu()
@@ -88,10 +97,10 @@ namespace Ex03.ConsoleUI
                     r_WheelServiceUI.inflateWheelsToMax();
                     break;
                 case eMenuOptions.RefuelVehicle:
-                    r_RefuellingUI.RefillVehicle();
+                    r_RefuellingUI.RefuelVehicle();
                     break;
                 case eMenuOptions.ChargeVehicle:
-                    r_RefuellingUI.RefillVehicle();
+                    r_RefuellingUI.ChargeVehicle();
                     break;
                 case eMenuOptions.DisplayVehicleInfo:
                     displayVehicleInfo();
@@ -105,6 +114,7 @@ namespace Ex03.ConsoleUI
         }
 
         private void loadFromFile() { }
+
         private void displayVehicleInfo() 
         {
             Console.WriteLine("Enter the license plate of the vehicle:");
@@ -122,8 +132,12 @@ namespace Ex03.ConsoleUI
             Console.WriteLine("Model name:    {0}" , task.Vehicle.ModelName);
             Console.WriteLine("License plate: {0}", task.Vehicle.LicenseNumber);
 
-            Console.WriteLine("Wheel manufacturer: {0}", task.Vehicle.Wheels[0].ManufacturerName);
-            Console.WriteLine("Wheel air pressure: {0}", task.Vehicle.Wheels[0].CurrentAirPressure);
+            for (int i = 0; i < task.Vehicle.Wheels.Length; i++)
+            {
+                Console.WriteLine("Wheel {0}:", i);
+                Console.WriteLine("manufacturer: {0}", task.Vehicle.Wheels[i].ManufacturerName);
+                Console.WriteLine("Wheel air pressure: {0}", task.Vehicle.Wheels[i].CurrentAirPressure);
+            }
 
             Dictionary<string, string> energyInfo = task.Vehicle.EnergySource.GetEnergyDetails();
             printDictionaryDetails(energyInfo);
@@ -132,6 +146,7 @@ namespace Ex03.ConsoleUI
             printDictionaryDetails(uniqueDetails);
             Console.WriteLine();
         }
+
         private void printDictionaryDetails(Dictionary<string, string> i_Details)
         {
             foreach (string key in i_Details.Keys)

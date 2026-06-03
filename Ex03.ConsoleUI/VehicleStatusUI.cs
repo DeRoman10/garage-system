@@ -18,22 +18,18 @@ namespace Ex03.ConsoleUI
             List<string> licensePlatesToDisplay = new List<string>(r_Garage.GetAllLicensePlates());
             eVehicleStatus[] availableStatuses = (eVehicleStatus[])Enum.GetValues(typeof(eVehicleStatus));
             
-            Console.WriteLine("Pick your required Car License");
-            string userLicensePlate = Console.ReadLine();
-          
-            GarageTask selectedtask = r_Garage.GetTask(userLicensePlate);
+            Console.WriteLine("Enter the license plate number:");
+            
+            string licensePlate = Console.ReadLine();
+
+            GarageTask selectedtask = r_Garage.GetTask(licensePlate);
             Console.WriteLine("Your car status is {0} , you can change to", selectedtask.VehicleStatus);
 
-            printFilterOptions(availableStatuses);
-            int userFilterChoice = int.Parse(Console.ReadLine());
-            
-            if (userFilterChoice - 1 < 0 || userFilterChoice - 1 > availableStatuses.Length + 1)
-            {
-                throw new ArgumentException("Invalid filter choice.");
-            }
+            eVehicleStatus[] vehicleStatusOptions = (eVehicleStatus[])Enum.GetValues(typeof(eVehicleStatus));
+            int chosenOptionIndex = ConsoleUtils.chooseOption(new List<eVehicleStatus>(vehicleStatusOptions));
+            eVehicleStatus chosenStatus = vehicleStatusOptions[chosenOptionIndex];
 
-            eVehicleStatus actualChosenFilter = availableStatuses[userFilterChoice - 1];
-            selectedtask.VehicleStatus = actualChosenFilter;
+            r_Garage.ChangeStatus(licensePlate, chosenStatus);
             Console.WriteLine();
             Console.WriteLine("====================================");
             Console.WriteLine("Vehicle status changed successfully!");

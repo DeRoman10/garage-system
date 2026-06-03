@@ -37,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="addVehicleUI.cs" />
+    <Compile Include="ConsoleUtils.cs" />
     <Compile Include="eMenuOptions.cs" />
     <Compile Include="GarageUI.cs" />
     <Compile Include="InventoryUI.cs" />

@@ -18,11 +18,18 @@ namespace Ex03.ConsoleUI
             string modelName, licenseNumber, vehicleType, ownerName, ownerPhoneNumber, wheelManufacturerName;
             float airPressure = 0, energyPercentage = 0;
 
-            Console.WriteLine("Please enter vehicle model's name");
-            modelName = Console.ReadLine();
-
             Console.WriteLine("Please enter vehicle's license plate number");
             licenseNumber = Console.ReadLine();
+            
+            if (r_Garage.IsVehicleInGarage(licenseNumber))
+            {
+                r_Garage.ChangeStatus(licenseNumber, eVehicleStatus.OnRepair);
+                
+                return;
+            }
+
+            Console.WriteLine("Please enter vehicle model's name");
+            modelName = Console.ReadLine();
 
             Console.WriteLine("Please enter the corresponding number of the vehicle's type:");
             vehicleType = vehicleTypeInputHandler();
@@ -67,22 +74,18 @@ namespace Ex03.ConsoleUI
 
         private string vehicleTypeInputHandler()
         {
-            printTypes();
+            printSupportedVehicleTypes();
 
-            int userChoice = int.Parse(Console.ReadLine());
             string actualChosenType = string.Empty;
 
-            if (userChoice - 1 < 0 || userChoice - 1 >= VehicleCreator.SupportedTypes.Count)
-            {
-                throw new ArgumentException("Unsupported vehicle type.");
-            }
+            int userChoice = ConsoleUtils.chooseOption(VehicleCreator.SupportedTypes);
 
-            actualChosenType = VehicleCreator.SupportedTypes[userChoice - 1];
+            actualChosenType = VehicleCreator.SupportedTypes[userChoice];
 
             return actualChosenType;
         }
 
-        private void printTypes()
+        private void printSupportedVehicleTypes()
         {
             for (int i = 0; i < VehicleCreator.SupportedTypes.Count; i++)
             {
