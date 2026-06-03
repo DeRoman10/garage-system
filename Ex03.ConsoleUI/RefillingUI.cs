@@ -43,7 +43,7 @@ namespace Ex03.ConsoleUI
             string licensePlate = Console.ReadLine();
 
             Console.WriteLine("Enter the amount of minutes to charge:");
-            float minutesToCharge = int.Parse(Console.ReadLine());
+            float minutesToCharge = float.Parse(Console.ReadLine());
 
             r_Garage.Charge(licensePlate, minutesToCharge);
 

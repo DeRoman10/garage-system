@@ -22,9 +22,9 @@ namespace Ex03.ConsoleUI
             
 
             Console.WriteLine();
-            Console.WriteLine("=============================");
-            Console.WriteLine("your wheel pressure is now {0}", selectedVehicle.Wheels[0].MaximumAirPressure);
-            Console.WriteLine("=============================");
+            Console.WriteLine("=======================================");
+            Console.WriteLine("All wheels inflated to maximum pressure");
+            Console.WriteLine("=======================================");
             Console.WriteLine();
         }
     }
