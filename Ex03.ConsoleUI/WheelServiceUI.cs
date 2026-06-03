@@ -20,7 +20,6 @@ namespace Ex03.ConsoleUI
 
             r_Garage.InflateWheelsToMax(userLicensePlate);
 
-
             Console.WriteLine();
             Console.WriteLine("=======================================");
             Console.WriteLine("All wheels inflated to maximum pressure");
