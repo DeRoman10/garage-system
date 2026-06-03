@@ -120,13 +120,16 @@ namespace Ex03.ConsoleUI
         {
             r_FileLoader.LoadFromFile("VehiclesDB.txt");
 
+            Console.WriteLine();
+            Console.WriteLine("=============================");
             Console.WriteLine("Vehicles loaded successfully.");
+            Console.WriteLine("=============================");
             Console.WriteLine();
         }
 
         private void displayVehicleInfo() 
         {
-            Console.WriteLine("Enter the license plate of the vehicle:");
+            Console.WriteLine("Enter license plate number:");
             string licensePlate = Console.ReadLine();
 
             GarageTask task = r_Garage.GetTask(licensePlate);
@@ -144,7 +147,7 @@ namespace Ex03.ConsoleUI
             for (int i = 0; i < task.Vehicle.Wheels.Length; i++)
             {
                 Console.WriteLine("Wheel {0}:", i + 1);
-                Console.WriteLine("manufacturer: {0}", task.Vehicle.Wheels[i].ManufacturerName);
+                Console.WriteLine("Manufacturer: {0}", task.Vehicle.Wheels[i].ManufacturerName);
                 Console.WriteLine("Wheel air pressure: {0}", task.Vehicle.Wheels[i].CurrentAirPressure);
                 Console.WriteLine();
             }

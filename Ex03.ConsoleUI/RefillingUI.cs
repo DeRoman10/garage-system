@@ -15,7 +15,7 @@ namespace Ex03.ConsoleUI
 
         public void RefuelVehicle()
         {
-            Console.WriteLine("Enter the license plate of the vehicle:");
+            Console.WriteLine("Enter license plate number:");
             string licensePlate = Console.ReadLine();
 
             Console.WriteLine("Enter the required fuel type:");
@@ -39,7 +39,7 @@ namespace Ex03.ConsoleUI
 
         public void ChargeVehicle()
         {
-            Console.WriteLine("Enter the license plate of the vehicle:");
+            Console.WriteLine("Enter license plate number:");
             string licensePlate = Console.ReadLine();
 
             Console.WriteLine("Enter the amount of minutes to charge:");

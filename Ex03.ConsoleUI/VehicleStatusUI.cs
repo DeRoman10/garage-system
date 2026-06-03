@@ -21,7 +21,7 @@ namespace Ex03.ConsoleUI
             string licensePlate = Console.ReadLine();
 
             GarageTask selectedTask = r_Garage.GetTask(licensePlate);
-            Console.WriteLine("Your car status is {0} , you can change to", selectedTask.VehicleStatus);
+            Console.WriteLine("Your car status is {0}, you can change to", selectedTask.VehicleStatus);
 
             eVehicleStatus[] vehicleStatusOptions = (eVehicleStatus[])Enum.GetValues(typeof(eVehicleStatus));
             int chosenOptionIndex = ConsoleUtils.ChooseOption(new List<eVehicleStatus>(vehicleStatusOptions));
@@ -33,8 +33,6 @@ namespace Ex03.ConsoleUI
             Console.WriteLine("Vehicle status changed successfully!");
             Console.WriteLine("====================================");
             Console.WriteLine();
-
-
         }
     }
 }

@@ -45,6 +45,8 @@ namespace Ex03.ConsoleUI
             {
                 Console.WriteLine(licenseNumber);
             }
+
+            Console.WriteLine();
         }
 
         private void printFilterOptions(eVehicleStatus[] i_AvailableStatuses)
