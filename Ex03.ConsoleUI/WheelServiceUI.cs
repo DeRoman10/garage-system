@@ -13,19 +13,17 @@ namespace Ex03.ConsoleUI
             r_Garage = i_SharedGarage;
         }
 
-        public void inflateWheelsToMax()
+        public void InflateWheelsToMax()
         {
-            Console.WriteLine("Pick your required Car License");
+            Console.WriteLine("Enter license plate number:");
             string userLicensePlate = Console.ReadLine();
-            
-            Vehicle selectedVehicle = r_Garage.GetVehicle(userLicensePlate);
-            selectedVehicle.InflateWheelsToMax();
-            
+
+            r_Garage.InflateWheelsToMax(userLicensePlate);
 
             Console.WriteLine();
-            Console.WriteLine("=============================");
-            Console.WriteLine("your wheel pressure is now {0}", selectedVehicle.Wheels[0].MaximumAirPressure);
-            Console.WriteLine("=============================");
+            Console.WriteLine("=======================================");
+            Console.WriteLine("All wheels inflated to maximum pressure");
+            Console.WriteLine("=======================================");
             Console.WriteLine();
         }
     }

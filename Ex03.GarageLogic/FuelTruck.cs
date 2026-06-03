@@ -47,7 +47,7 @@ namespace Ex03.GarageLogic
             string[] carryingFreezingCargoOptions = { "true", "false" };
 
             truckSpecificProperties.Add(new VehiclePropertyInfo("IsCarryingFreezingCargo", "Is Carrying Freezing Cargo?", carryingFreezingCargoOptions));
-            
+
             truckSpecificProperties.Add(new VehiclePropertyInfo("CargoVolume", "Cargo Volume", new string[0]));
 
             return truckSpecificProperties;
@@ -57,7 +57,7 @@ namespace Ex03.GarageLogic
         {
             Dictionary<string, string> details = new Dictionary<string, string>();
 
-            details.Add("Is Carrying Freezing Cargo", IsCarryingFreezingCargo.ToString());
+            details.Add("Is Carrying Freezing Cargo", IsCarryingFreezingCargo ? "Yes" : "No");
             details.Add("Cargo Volume", m_CargoVolume.ToString());
 
             return details;

@@ -4,7 +4,7 @@ using Ex03.GarageLogic;
 
 namespace Ex03.ConsoleUI
 {
-    public class GarageUI
+    internal class GarageUI
     {
         private readonly Garage r_Garage = new Garage();
 
@@ -12,7 +12,8 @@ namespace Ex03.ConsoleUI
         private readonly InventoryUI r_InventoryUI;
         private readonly VehicleStatusUI r_VehicleStatusUI;
         private readonly WheelServiceUI r_WheelServiceUI;
-        private readonly RefillingUI r_RefuellingUI;
+        private readonly RefillingUI r_RefillingUI;
+        private readonly GarageFileLoader r_FileLoader;
 
 
         public GarageUI()
@@ -21,7 +22,8 @@ namespace Ex03.ConsoleUI
             r_InventoryUI = new InventoryUI(r_Garage);
             r_VehicleStatusUI = new VehicleStatusUI(r_Garage);
             r_WheelServiceUI = new WheelServiceUI(r_Garage);
-            r_RefuellingUI = new RefillingUI(r_Garage);
+            r_RefillingUI = new RefillingUI(r_Garage);
+            r_FileLoader = new GarageFileLoader(r_Garage);
         }
 
         public void Run()
@@ -47,9 +49,18 @@ namespace Ex03.ConsoleUI
         {
             printMenu();
 
-            eMenuOptions choice = (eMenuOptions)Enum.Parse(typeof(eMenuOptions), Console.ReadLine());
+            int userInput = int.Parse(Console.ReadLine());
+            eMenuOptions[] options = (eMenuOptions[])Enum.GetValues(typeof(eMenuOptions));
 
-            return choice;
+            int minValue = (int)options[0];
+            int maxValue = (int)options[options.Length - 1];
+
+            if (userInput < minValue || userInput > maxValue)
+            {
+                throw new ValueRangeException(minValue, maxValue);
+            }
+
+            return (eMenuOptions)userInput;
         }
 
         private void printMenu()
@@ -69,6 +80,7 @@ namespace Ex03.ConsoleUI
         private bool executeMenuOption(eMenuOptions i_Choice)
         {
             bool exitRequested = false;
+            Console.WriteLine();
 
             switch (i_Choice)
             {
@@ -79,19 +91,19 @@ namespace Ex03.ConsoleUI
                     r_AddVehicleUI.AddVehicle();
                     break;
                 case eMenuOptions.DisplayLicensePlates:
-                    r_InventoryUI.displayLicensePlatesHandler();
+                    r_InventoryUI.DisplayLicensePlatesHandler();
                     break;
                 case eMenuOptions.ChangeVehicleStatus:
                     r_VehicleStatusUI.ChangeVehicleStatus();
                     break;
                 case eMenuOptions.InflateWheelsToMax:
-                    r_WheelServiceUI.inflateWheelsToMax();
+                    r_WheelServiceUI.InflateWheelsToMax();
                     break;
                 case eMenuOptions.RefuelVehicle:
-                    r_RefuellingUI.RefillVehicle();
+                    r_RefillingUI.RefuelVehicle();
                     break;
                 case eMenuOptions.ChargeVehicle:
-                    r_RefuellingUI.RefillVehicle();
+                    r_RefillingUI.ChargeVehicle();
                     break;
                 case eMenuOptions.DisplayVehicleInfo:
                     displayVehicleInfo();
@@ -104,34 +116,51 @@ namespace Ex03.ConsoleUI
             return exitRequested;
         }
 
-        private void loadFromFile() { }
-        private void displayVehicleInfo() 
+        private void loadFromFile()
         {
-            Console.WriteLine("Enter the license plate of the vehicle:");
+            r_FileLoader.LoadFromFile("VehiclesDB.txt");
+
+            Console.WriteLine();
+            Console.WriteLine("=============================");
+            Console.WriteLine("Vehicles loaded successfully.");
+            Console.WriteLine("=============================");
+            Console.WriteLine();
+        }
+
+        private void displayVehicleInfo()
+        {
+            Console.WriteLine("Enter license plate number:");
             string licensePlate = Console.ReadLine();
 
             GarageTask task = r_Garage.GetTask(licensePlate);
-
+            Console.WriteLine();
             Console.WriteLine("======= Garage Record ======");
-            Console.WriteLine("Owner name:  {0}" , task.OwnerName);
+            Console.WriteLine("Owner name:  {0}", task.OwnerName);
             Console.WriteLine("Owner phone: {0}", task.OwnerPhone);
             Console.WriteLine("Status:      {0}", task.VehicleStatus);
             Console.WriteLine();
 
             Console.WriteLine("======= Vehicle Info =======");
-            Console.WriteLine("Model name:    {0}" , task.Vehicle.ModelName);
+            Console.WriteLine("Model name:    {0}", task.Vehicle.ModelName);
             Console.WriteLine("License plate: {0}", task.Vehicle.LicenseNumber);
+            Console.WriteLine();
 
-            Console.WriteLine("Wheel manufacturer: {0}", task.Vehicle.Wheels[0].ManufacturerName);
-            Console.WriteLine("Wheel air pressure: {0}", task.Vehicle.Wheels[0].CurrentAirPressure);
+            for (int i = 0; i < task.Vehicle.Wheels.Length; i++)
+            {
+                Console.WriteLine("Wheel {0}:", i + 1);
+                Console.WriteLine("Manufacturer: {0}", task.Vehicle.Wheels[i].ManufacturerName);
+                Console.WriteLine("Wheel air pressure: {0}", task.Vehicle.Wheels[i].CurrentAirPressure);
+                Console.WriteLine();
+            }
 
             Dictionary<string, string> energyInfo = task.Vehicle.EnergySource.GetEnergyDetails();
             printDictionaryDetails(energyInfo);
-
+            Console.WriteLine();
             Dictionary<string, string> uniqueDetails = task.Vehicle.GetUniqueVehicleDetails();
             printDictionaryDetails(uniqueDetails);
             Console.WriteLine();
         }
+
         private void printDictionaryDetails(Dictionary<string, string> i_Details)
         {
             foreach (string key in i_Details.Keys)

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Ex03.GarageLogic;
 
 namespace Ex03.ConsoleUI
@@ -15,68 +12,48 @@ namespace Ex03.ConsoleUI
         {
             r_Garage = i_SharedGarage;
         }
-        public void RefillVehicle()
+
+        public void RefuelVehicle()
         {
-            Console.WriteLine("Enter the license plate of the vehicle:");
+            Console.WriteLine("Enter license plate number:");
             string licensePlate = Console.ReadLine();
-            Vehicle vehicleToRefill = r_Garage.GetVehicle(licensePlate);
 
+            Console.WriteLine();
+            Console.WriteLine("Enter the required fuel type:");
 
-            if (vehicleToRefill.EnergySource is FuelSource)
-            {
-                eFuelType[] availableFuelType = (eFuelType[])Enum.GetValues(typeof(eFuelType));
-                Console.WriteLine("This is a fuel based vehicle.");
+            eFuelType[] fuelTypes = (eFuelType[])Enum.GetValues(typeof(eFuelType));
+            int index = ConsoleUtils.ChooseOption(new List<eFuelType>(fuelTypes));
 
-                printFilterOptions(availableFuelType);
-                int userChoosenFuel = int.Parse(Console.ReadLine());
+            eFuelType chosenFuelType = fuelTypes[index];
+            Console.WriteLine();
+            Console.WriteLine("Enter amount of liters to refuel:");
+            float liters = float.Parse(Console.ReadLine());
 
-                if (userChoosenFuel - 1 < 0 || userChoosenFuel - 1 > availableFuelType.Length + 1)
-                {
-                    throw new ArgumentException("Invalid filter choice.");
-                }
+            Console.WriteLine();
+            r_Garage.Refuel(licensePlate, chosenFuelType, liters);
 
-                eFuelType actualUserChoosenFuel = availableFuelType[userChoosenFuel - 1];
-                Console.WriteLine("Enter amount of liters to refuel:");
-                float liters = float.Parse(Console.ReadLine());
-
-                vehicleToRefill.Refuel(actualUserChoosenFuel, liters);
-                
-                Console.WriteLine();
-                Console.WriteLine("=============================");
-                Console.WriteLine("Vehicle refueled successfully!");
-                Console.WriteLine("=============================");
-                Console.WriteLine();
-
-            }
-            else if (vehicleToRefill.EnergySource is ElectricSource)
-            {
-                Console.WriteLine("This is an electric vehicle.");
-
-                Console.WriteLine("Enter amount of minutes to charge:");
-                float minutes = float.Parse(Console.ReadLine());
-
-                vehicleToRefill.Charge(minutes / 60f);
-                
-                Console.WriteLine();
-                Console.WriteLine("=============================");
-                Console.WriteLine("Vehicle charged successfully!");
-                Console.WriteLine("=============================");
-                Console.WriteLine();
-
-            }
-            else
-            {
-                Console.WriteLine("Unknown energy source.");
-            }
+            Console.WriteLine("==============================");
+            Console.WriteLine("Vehicle refueled successfully!");
+            Console.WriteLine("==============================");
+            Console.WriteLine();
         }
-        private void printFilterOptions(eFuelType[] i_AvailableFuelType)
+
+        public void ChargeVehicle()
         {
+            Console.WriteLine("Enter license plate number:");
+            string licensePlate = Console.ReadLine();
+            Console.WriteLine();
 
-            for (int i = 0; i < i_AvailableFuelType.Length; i++)
-            {
-                Console.WriteLine("{0}) {1}", i + 1, i_AvailableFuelType[i]);
-            }
+            Console.WriteLine("Enter the amount of minutes to charge:");
+            float minutesToCharge = float.Parse(Console.ReadLine());
 
+            Console.WriteLine();
+            r_Garage.Charge(licensePlate, minutesToCharge);
+
+            Console.WriteLine("=============================");
+            Console.WriteLine("Vehicle charged successfully!");
+            Console.WriteLine("=============================");
+            Console.WriteLine();
         }
     }
 }

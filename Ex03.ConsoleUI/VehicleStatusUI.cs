@@ -15,41 +15,24 @@ namespace Ex03.ConsoleUI
 
         public void ChangeVehicleStatus()
         {
-            List<string> licensePlatesToDisplay = new List<string>(r_Garage.GetAllLicensePlates());
-            eVehicleStatus[] availableStatuses = (eVehicleStatus[])Enum.GetValues(typeof(eVehicleStatus));
-            
-            Console.WriteLine("Pick your required Car License");
-            string userLicensePlate = Console.ReadLine();
-          
-            GarageTask selectedtask = r_Garage.GetTask(userLicensePlate);
-            Console.WriteLine("Your car status is {0} , you can change to", selectedtask.VehicleStatus);
 
-            printFilterOptions(availableStatuses);
-            int userFilterChoice = int.Parse(Console.ReadLine());
-            
-            if (userFilterChoice - 1 < 0 || userFilterChoice - 1 > availableStatuses.Length + 1)
-            {
-                throw new ArgumentException("Invalid filter choice.");
-            }
+            Console.WriteLine("Enter license plate number:");
 
-            eVehicleStatus actualChosenFilter = availableStatuses[userFilterChoice - 1];
-            selectedtask.VehicleStatus = actualChosenFilter;
+            string licensePlate = Console.ReadLine();
+
+            GarageTask selectedTask = r_Garage.GetTask(licensePlate);
+            Console.WriteLine("Your car status is {0}, you can change to", selectedTask.VehicleStatus);
+
+            eVehicleStatus[] vehicleStatusOptions = (eVehicleStatus[])Enum.GetValues(typeof(eVehicleStatus));
+            int chosenOptionIndex = ConsoleUtils.ChooseOption(new List<eVehicleStatus>(vehicleStatusOptions));
+            eVehicleStatus chosenStatus = vehicleStatusOptions[chosenOptionIndex];
+
+            r_Garage.ChangeStatus(licensePlate, chosenStatus);
             Console.WriteLine();
             Console.WriteLine("====================================");
             Console.WriteLine("Vehicle status changed successfully!");
             Console.WriteLine("====================================");
             Console.WriteLine();
-
-
-        }
-        private void printFilterOptions(eVehicleStatus[] i_AvailableStatuses)
-        {
-
-            for (int i = 0; i < i_AvailableStatuses.Length; i++)
-            {
-                Console.WriteLine("{0}) {1}", i + 1, i_AvailableStatuses[i]);
-            }
-
         }
     }
 }
