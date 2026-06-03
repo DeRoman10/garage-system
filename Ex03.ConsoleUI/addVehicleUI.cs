@@ -83,12 +83,10 @@ namespace Ex03.ConsoleUI
 
         private string vehicleTypeInputHandler()
         {
+            List<string> supportedTypes = VehicleCreator.SupportedTypes;
+            int userChoice = ConsoleUtils.ChooseOption(supportedTypes);
 
-            int userChoice = ConsoleUtils.ChooseOption(VehicleCreator.SupportedTypes);
-
-            string actualChosenType = VehicleCreator.SupportedTypes[userChoice];
-
-            return actualChosenType;
+            return supportedTypes[userChoice];
         }
 
         private Dictionary<string, string> setSpecificPropertiesForAddedVehicle(List<VehiclePropertyInfo> i_TypeSpecificInfo)
