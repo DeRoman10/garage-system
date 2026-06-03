@@ -87,7 +87,7 @@ namespace Ex03.ConsoleUI
         {
             Dictionary<string, string> specificProperties = new Dictionary<string, string>();
 
-            Console.WriteLine("Please enter the following additional information:");
+            Console.WriteLine("Enter the following additional information:");
 
             foreach (VehiclePropertyInfo vehiclePropertyInfo in i_TypeSpecificInfo)
             {
