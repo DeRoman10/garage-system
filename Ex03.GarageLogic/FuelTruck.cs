@@ -57,7 +57,7 @@ namespace Ex03.GarageLogic
         {
             Dictionary<string, string> details = new Dictionary<string, string>();
 
-            details.Add("Is Carrying Freezing Cargo", IsCarryingFreezingCargo.ToString());
+            details.Add("Is Carrying Freezing Cargo", IsCarryingFreezingCargo ? "Yes" : "No");
             details.Add("Cargo Volume", m_CargoVolume.ToString());
 
             return details;
