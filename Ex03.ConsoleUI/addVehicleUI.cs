@@ -80,7 +80,7 @@ namespace Ex03.ConsoleUI
 
             string actualChosenType = string.Empty;
 
-            int userChoice = ConsoleUtils.chooseOption(VehicleCreator.SupportedTypes);
+            int userChoice = ConsoleUtils.ChooseOption(VehicleCreator.SupportedTypes);
 
             actualChosenType = VehicleCreator.SupportedTypes[userChoice];
 

@@ -4,7 +4,7 @@ namespace Ex03.ConsoleUI
 {
     internal static class ConsoleUtils
     {
-        internal static int chooseOption<T>(List<T> i_Options)
+        internal static int ChooseOption<T>(List<T> i_Options)
         {
             for (int i = 0; i < i_Options.Count; i++)
             {

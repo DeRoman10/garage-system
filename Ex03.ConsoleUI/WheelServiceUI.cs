@@ -15,11 +15,10 @@ namespace Ex03.ConsoleUI
 
         public void InflateWheelsToMax()
         {
-            Console.WriteLine("Pick your required Car License");
+            Console.WriteLine("Enter license plate number:");
             string userLicensePlate = Console.ReadLine();
-            
-            Vehicle selectedVehicle = r_Garage.GetVehicle(userLicensePlate);
-            selectedVehicle.InflateWheelsToMax();
+
+            r_Garage.InflateWheelsToMax(userLicensePlate);
             
 
             Console.WriteLine();

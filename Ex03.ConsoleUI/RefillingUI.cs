@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Ex03.GarageLogic;
 
 namespace Ex03.ConsoleUI
@@ -24,7 +21,7 @@ namespace Ex03.ConsoleUI
             Console.WriteLine("Enter the required fuel type:");
 
             eFuelType[] fuelTypes = (eFuelType[])Enum.GetValues(typeof(eFuelType));
-            int index = ConsoleUtils.chooseOption(new List<eFuelType>(fuelTypes));
+            int index = ConsoleUtils.ChooseOption(new List<eFuelType>(fuelTypes));
 
             eFuelType chosenFuelType = fuelTypes[index];
 
@@ -46,7 +43,7 @@ namespace Ex03.ConsoleUI
             string licensePlate = Console.ReadLine();
 
             Console.WriteLine("Enter the amount of minutes to charge:");
-            int minutesToCharge = int.Parse(Console.ReadLine());
+            float minutesToCharge = int.Parse(Console.ReadLine());
 
             r_Garage.Charge(licensePlate, minutesToCharge);
 
