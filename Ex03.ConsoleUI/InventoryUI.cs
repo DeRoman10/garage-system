@@ -25,6 +25,7 @@ namespace Ex03.ConsoleUI
             int userFilterChoice = int.Parse(Console.ReadLine());
 
             eVehicleStatus actualChosenFilter;
+            Console.WriteLine();
 
             if (userFilterChoice - 1 < 0 || userFilterChoice > availableStatuses.Length + 1)
             {

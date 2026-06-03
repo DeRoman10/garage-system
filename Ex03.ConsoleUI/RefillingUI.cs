@@ -18,19 +18,20 @@ namespace Ex03.ConsoleUI
             Console.WriteLine("Enter license plate number:");
             string licensePlate = Console.ReadLine();
 
+            Console.WriteLine();
             Console.WriteLine("Enter the required fuel type:");
 
             eFuelType[] fuelTypes = (eFuelType[])Enum.GetValues(typeof(eFuelType));
             int index = ConsoleUtils.ChooseOption(new List<eFuelType>(fuelTypes));
 
             eFuelType chosenFuelType = fuelTypes[index];
-
+            Console.WriteLine();
             Console.WriteLine("Enter amount of liters to refuel:");
             float liters = float.Parse(Console.ReadLine());
 
+            Console.WriteLine();
             r_Garage.Refuel(licensePlate, chosenFuelType, liters);
 
-            Console.WriteLine();
             Console.WriteLine("==============================");
             Console.WriteLine("Vehicle refueled successfully!");
             Console.WriteLine("==============================");
@@ -41,13 +42,14 @@ namespace Ex03.ConsoleUI
         {
             Console.WriteLine("Enter license plate number:");
             string licensePlate = Console.ReadLine();
+            Console.WriteLine();
 
             Console.WriteLine("Enter the amount of minutes to charge:");
             float minutesToCharge = float.Parse(Console.ReadLine());
 
+            Console.WriteLine();
             r_Garage.Charge(licensePlate, minutesToCharge);
 
-            Console.WriteLine();
             Console.WriteLine("=============================");
             Console.WriteLine("Vehicle charged successfully!");
             Console.WriteLine("=============================");

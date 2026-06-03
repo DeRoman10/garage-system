@@ -20,6 +20,7 @@ namespace Ex03.ConsoleUI
 
             Console.WriteLine("Please enter vehicle's license plate number:");
             licenseNumber = Console.ReadLine();
+            Console.WriteLine();
 
             if (r_Garage.IsVehicleInGarage(licenseNumber))
             {
@@ -30,24 +31,31 @@ namespace Ex03.ConsoleUI
             {
                 Console.WriteLine("Please enter vehicle model's name:");
                 modelName = Console.ReadLine();
+                Console.WriteLine();
 
                 Console.WriteLine("Please enter the corresponding number of the vehicle's type:");
                 vehicleType = vehicleTypeInputHandler();
+                Console.WriteLine();
 
                 Console.WriteLine("Please enter wheel's manufacturer name:");
                 wheelManufacturerName = Console.ReadLine();
+                Console.WriteLine();
 
                 Console.WriteLine("Please enter wheel's current air pressure:");
                 airPressure = float.Parse(Console.ReadLine());
+                Console.WriteLine();
 
                 Console.WriteLine("Please enter vehicle's current energy level %:");
                 energyPercentage = float.Parse(Console.ReadLine());
+                Console.WriteLine();
 
                 Console.WriteLine("Please enter vehicle owner's full name:");
                 ownerName = Console.ReadLine();
+                Console.WriteLine();
 
                 Console.WriteLine("Please enter vehicle owner's phone number:");
                 ownerPhoneNumber = Console.ReadLine();
+                Console.WriteLine();
 
                 List<VehiclePropertyInfo> typeSpecificInfo = r_Garage.AddVehicle(modelName, licenseNumber, vehicleType, ownerName, ownerPhoneNumber);
 
@@ -106,6 +114,7 @@ namespace Ex03.ConsoleUI
                 string userInput = Console.ReadLine();
 
                 specificProperties.Add(currentPropertyName, userInput);
+                Console.WriteLine();
             }
 
             return specificProperties;

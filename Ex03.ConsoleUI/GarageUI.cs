@@ -133,7 +133,7 @@ namespace Ex03.ConsoleUI
             string licensePlate = Console.ReadLine();
 
             GarageTask task = r_Garage.GetTask(licensePlate);
-
+            Console.WriteLine();
             Console.WriteLine("======= Garage Record ======");
             Console.WriteLine("Owner name:  {0}", task.OwnerName);
             Console.WriteLine("Owner phone: {0}", task.OwnerPhone);
@@ -143,6 +143,7 @@ namespace Ex03.ConsoleUI
             Console.WriteLine("======= Vehicle Info =======");
             Console.WriteLine("Model name:    {0}", task.Vehicle.ModelName);
             Console.WriteLine("License plate: {0}", task.Vehicle.LicenseNumber);
+            Console.WriteLine();
 
             for (int i = 0; i < task.Vehicle.Wheels.Length; i++)
             {
@@ -154,7 +155,7 @@ namespace Ex03.ConsoleUI
 
             Dictionary<string, string> energyInfo = task.Vehicle.EnergySource.GetEnergyDetails();
             printDictionaryDetails(energyInfo);
-
+            Console.WriteLine();
             Dictionary<string, string> uniqueDetails = task.Vehicle.GetUniqueVehicleDetails();
             printDictionaryDetails(uniqueDetails);
             Console.WriteLine();
