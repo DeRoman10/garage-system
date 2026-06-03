@@ -56,15 +56,5 @@ namespace Ex03.ConsoleUI
             Console.WriteLine("=============================");
             Console.WriteLine();
         }
-
-        private void printFilterOptions(eFuelType[] i_AvailableFuelType)
-        {
-
-            for (int i = 0; i < i_AvailableFuelType.Length; i++)
-            {
-                Console.WriteLine("{0}) {1}", i + 1, i_AvailableFuelType[i]);
-            }
-
-        }
     }
 }

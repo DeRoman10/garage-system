@@ -88,13 +88,13 @@ namespace Ex03.ConsoleUI
                     r_AddVehicleUI.AddVehicle();
                     break;
                 case eMenuOptions.DisplayLicensePlates:
-                    r_InventoryUI.displayLicensePlatesHandler();
+                    r_InventoryUI.DisplayLicensePlatesHandler();
                     break;
                 case eMenuOptions.ChangeVehicleStatus:
                     r_VehicleStatusUI.ChangeVehicleStatus();
                     break;
                 case eMenuOptions.InflateWheelsToMax:
-                    r_WheelServiceUI.inflateWheelsToMax();
+                    r_WheelServiceUI.InflateWheelsToMax();
                     break;
                 case eMenuOptions.RefuelVehicle:
                     r_RefuellingUI.RefuelVehicle();

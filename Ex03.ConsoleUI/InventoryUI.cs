@@ -13,7 +13,7 @@ namespace Ex03.ConsoleUI
             r_Garage = i_SharedGarage;
         }
 
-        public void displayLicensePlatesHandler()
+        public void DisplayLicensePlatesHandler()
         {
             eVehicleStatus[] availableStatuses = (eVehicleStatus[])Enum.GetValues(typeof(eVehicleStatus));
             List<string> licensePlatesToDisplay = new List<string>();
@@ -26,7 +26,7 @@ namespace Ex03.ConsoleUI
 
             eVehicleStatus actualChosenFilter;
 
-            if (userFilterChoice - 1 < 0 || userFilterChoice - 1 > availableStatuses.Length + 1)
+            if (userFilterChoice - 1 < 0 || userFilterChoice > availableStatuses.Length + 1)
             {
                 throw new ArgumentException("Invalid filter choice.");
             }

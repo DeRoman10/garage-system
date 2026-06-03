@@ -20,61 +20,63 @@ namespace Ex03.ConsoleUI
 
             Console.WriteLine("Please enter vehicle's license plate number");
             licenseNumber = Console.ReadLine();
-            
+
             if (r_Garage.IsVehicleInGarage(licenseNumber))
             {
                 r_Garage.ChangeStatus(licenseNumber, eVehicleStatus.OnRepair);
-                
-                return;
+                Console.WriteLine("Vehicle already in garage. Changing status to on repair.");
             }
-
-            Console.WriteLine("Please enter vehicle model's name");
-            modelName = Console.ReadLine();
-
-            Console.WriteLine("Please enter the corresponding number of the vehicle's type:");
-            vehicleType = vehicleTypeInputHandler();
-
-            Console.WriteLine("Please enter wheel's manufacturer name:");
-            wheelManufacturerName = Console.ReadLine();
-
-            Console.WriteLine("Please enter wheel's current air pressure:");
-            airPressure = float.Parse(Console.ReadLine());
-
-            Console.WriteLine("Please enter vehicle's current energy level %:");
-            energyPercentage = float.Parse(Console.ReadLine());
-
-            Console.WriteLine("Please enter vehicle owner's full name");
-            ownerName = Console.ReadLine();
-
-            Console.WriteLine("Please enter vehicle owner's phone number");
-            ownerPhoneNumber = Console.ReadLine();
-
-            List<VehiclePropertyInfo> typeSpecificInfo = r_Garage.AddVehicle(modelName, licenseNumber, vehicleType, ownerName, ownerPhoneNumber);
-
-            Dictionary<string, string> properties = setSpecificPropertiesForAddedVehicle(typeSpecificInfo);
-
-            try
+            else
             {
-                r_Garage.SetVehicleProperties(licenseNumber, properties);
-                r_Garage.SetWheelProperties(licenseNumber, wheelManufacturerName, airPressure);
-                r_Garage.SetInitialEnergyByPercentage(licenseNumber, energyPercentage);
-            }
-            catch
-            {
-                r_Garage.RemoveVehicle(licenseNumber);
-                throw;
-            }
 
-            Console.WriteLine();
-            Console.WriteLine("===========================");
-            Console.WriteLine("Vehicle added successfully!");
-            Console.WriteLine("===========================");
-            Console.WriteLine();
+
+                Console.WriteLine("Please enter vehicle model's name");
+                modelName = Console.ReadLine();
+
+                Console.WriteLine("Please enter the corresponding number of the vehicle's type:");
+                vehicleType = vehicleTypeInputHandler();
+
+                Console.WriteLine("Please enter wheel's manufacturer name:");
+                wheelManufacturerName = Console.ReadLine();
+
+                Console.WriteLine("Please enter wheel's current air pressure:");
+                airPressure = float.Parse(Console.ReadLine());
+
+                Console.WriteLine("Please enter vehicle's current energy level %:");
+                energyPercentage = float.Parse(Console.ReadLine());
+
+                Console.WriteLine("Please enter vehicle owner's full name");
+                ownerName = Console.ReadLine();
+
+                Console.WriteLine("Please enter vehicle owner's phone number");
+                ownerPhoneNumber = Console.ReadLine();
+
+                List<VehiclePropertyInfo> typeSpecificInfo = r_Garage.AddVehicle(modelName, licenseNumber, vehicleType, ownerName, ownerPhoneNumber);
+
+                Dictionary<string, string> properties = setSpecificPropertiesForAddedVehicle(typeSpecificInfo);
+
+                try
+                {
+                    r_Garage.SetVehicleProperties(licenseNumber, properties);
+                    r_Garage.SetWheelProperties(licenseNumber, wheelManufacturerName, airPressure);
+                    r_Garage.SetInitialEnergyByPercentage(licenseNumber, energyPercentage);
+                }
+                catch
+                {
+                    r_Garage.RemoveVehicle(licenseNumber);
+                    throw;
+                }
+
+                Console.WriteLine();
+                Console.WriteLine("===========================");
+                Console.WriteLine("Vehicle added successfully!");
+                Console.WriteLine("===========================");
+                Console.WriteLine();
+            }
         }
 
         private string vehicleTypeInputHandler()
         {
-            printSupportedVehicleTypes();
 
             string actualChosenType = string.Empty;
 
@@ -83,14 +85,6 @@ namespace Ex03.ConsoleUI
             actualChosenType = VehicleCreator.SupportedTypes[userChoice];
 
             return actualChosenType;
-        }
-
-        private void printSupportedVehicleTypes()
-        {
-            for (int i = 0; i < VehicleCreator.SupportedTypes.Count; i++)
-            {
-                Console.WriteLine("{0}) {1}", i + 1, VehicleCreator.SupportedTypes[i]);
-            }
         }
 
         private Dictionary<string, string> setSpecificPropertiesForAddedVehicle(List<VehiclePropertyInfo> i_TypeSpecificInfo)

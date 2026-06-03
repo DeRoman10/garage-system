@@ -13,7 +13,7 @@ namespace Ex03.ConsoleUI
             r_Garage = i_SharedGarage;
         }
 
-        public void inflateWheelsToMax()
+        public void InflateWheelsToMax()
         {
             Console.WriteLine("Pick your required Car License");
             string userLicensePlate = Console.ReadLine();

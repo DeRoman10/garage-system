@@ -15,9 +15,7 @@ namespace Ex03.ConsoleUI
 
         public void ChangeVehicleStatus()
         {
-            List<string> licensePlatesToDisplay = new List<string>(r_Garage.GetAllLicensePlates());
-            eVehicleStatus[] availableStatuses = (eVehicleStatus[])Enum.GetValues(typeof(eVehicleStatus));
-            
+
             Console.WriteLine("Enter the license plate number:");
             
             string licensePlate = Console.ReadLine();
@@ -36,15 +34,6 @@ namespace Ex03.ConsoleUI
             Console.WriteLine("====================================");
             Console.WriteLine();
 
-
-        }
-        private void printFilterOptions(eVehicleStatus[] i_AvailableStatuses)
-        {
-
-            for (int i = 0; i < i_AvailableStatuses.Length; i++)
-            {
-                Console.WriteLine("{0}) {1}", i + 1, i_AvailableStatuses[i]);
-            }
 
         }
     }
