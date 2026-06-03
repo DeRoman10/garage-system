@@ -65,12 +65,6 @@ namespace Ex03.GarageLogic
             m_LicenseType = (eVehicleLicenseType)Enum.Parse(typeof(eVehicleLicenseType), i_Properties["LicenseType"]);
             m_EngineVolume = int.Parse(i_Properties["EngineVolume"]);
         }
-
-        public override string ToString()
-        {
-            return string.Format("Model: {0}, License: {1}, Energy: {2}%, License Type: {3}, Engine: {4}cc",
-                ModelName, LicenseNumber, EnergyPercentage, m_LicenseType, m_EngineVolume);
-        }
     }
 }
 

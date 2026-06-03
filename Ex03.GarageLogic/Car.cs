@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
-    public class Car : Vehicle
+    public abstract class Car : Vehicle
     {
         private eColor m_CarColor;
         private eNumberOfDoors m_NumberOfDoors;
@@ -64,12 +64,6 @@ namespace Ex03.GarageLogic
         {
             m_CarColor = (eColor)Enum.Parse(typeof(eColor), i_Properties["eColor"]);
             m_NumberOfDoors = (eNumberOfDoors)Enum.Parse(typeof(eNumberOfDoors), i_Properties["eNumberOfDoors"]);
-        }
-
-        public override string ToString()
-        {
-            return string.Format("Model: {0}, License: {1}, Energy: {2}%, Color: {3}, Doors: {4}",
-                ModelName, LicenseNumber, EnergyPercentage, m_CarColor, m_NumberOfDoors);
         }
     }
 

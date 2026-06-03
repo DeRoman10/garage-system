@@ -41,10 +41,6 @@
             {
                 return m_OwnerName;
             }
-            set
-            {
-                m_OwnerName = value;
-            }
         }
 
         public string OwnerPhone
@@ -52,10 +48,6 @@
             get
             {
                 return m_OwnerPhoneNumber;
-            }
-            set
-            {
-                m_OwnerPhoneNumber = value;
             }
         }
     }

@@ -45,14 +45,6 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public float EnergyPercentage
-        {
-            get
-            {
-                return (m_EnergySource.EnergyLeft / m_EnergySource.MaxEnergyCapacity) * 100f;
-            }
-        }
-
         public Wheel[] Wheels
         {
             get

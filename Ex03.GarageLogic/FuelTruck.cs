@@ -68,11 +68,5 @@ namespace Ex03.GarageLogic
             m_IsCarryingFreezingCargo = bool.Parse(i_Properties["IsCarryingFreezingCargo"]);
             m_CargoVolume = float.Parse(i_Properties["CargoVolume"]);
         }
-
-        public override string ToString()
-        {
-            return string.Format("Model: {0}, License: {1}, Energy: {2}%, Freezing cargo: {3}, Cargo volume: {4}",
-                ModelName, LicenseNumber, EnergyPercentage, m_IsCarryingFreezingCargo, m_CargoVolume);
-        }
     }
 }

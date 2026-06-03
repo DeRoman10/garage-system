@@ -7,13 +7,6 @@ namespace Ex03.GarageLogic
         protected float m_EnergyLeft;
         protected float m_MaxEnergyCapacity;
 
-        public float EnergyLeft
-        {
-            get
-            {
-                return m_EnergyLeft;
-            }
-        }
         public float MaxEnergyCapacity
         {
             get

@@ -13,14 +13,6 @@ namespace Ex03.GarageLogic
             m_FuelType = i_FuelType;
         }
 
-        public eFuelType FuelType
-        {
-            get
-            {
-                return m_FuelType;
-            }
-        }
-
         public override Dictionary<string, string> GetEnergyDetails()
         {
             Dictionary<string, string> energyDetails = new Dictionary<string, string>();

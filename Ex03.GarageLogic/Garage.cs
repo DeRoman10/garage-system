@@ -59,13 +59,6 @@ namespace Ex03.GarageLogic
             return filteredPlates;
         }
 
-        public Vehicle GetVehicle(string i_LicenseNumber)
-        {
-            validateVehicleInGarage(i_LicenseNumber);
-
-            return m_Tasks[i_LicenseNumber].Vehicle;
-        }
-
         public GarageTask GetTask(string i_LicenseNumber)
         {
             validateVehicleInGarage(i_LicenseNumber);

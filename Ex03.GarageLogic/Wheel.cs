@@ -24,14 +24,6 @@
             }
         }
 
-        public float MaximumAirPressure
-        {
-            get
-            {
-                return m_MaximumAirPressure;
-            }
-        }
-
         public float CurrentAirPressure
         {
             get
