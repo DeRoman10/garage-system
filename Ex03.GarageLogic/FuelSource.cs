@@ -16,8 +16,8 @@ namespace Ex03.GarageLogic
         public eFuelType FuelType
         {
             get
-            { 
-                return m_FuelType; 
+            {
+                return m_FuelType;
             }
         }
 

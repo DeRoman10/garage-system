@@ -6,6 +6,6 @@
 
         public ElectricMotorcycle(string i_LicenseID, string i_ModelName)
             : base(i_ModelName, i_LicenseID, new ElectricSource(k_EmptyEnergy, k_MaxBatteryTime))
-        {}
+        { }
     }
 }

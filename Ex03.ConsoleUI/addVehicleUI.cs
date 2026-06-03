@@ -28,8 +28,6 @@ namespace Ex03.ConsoleUI
             }
             else
             {
-
-
                 Console.WriteLine("Please enter vehicle model's name:");
                 modelName = Console.ReadLine();
 

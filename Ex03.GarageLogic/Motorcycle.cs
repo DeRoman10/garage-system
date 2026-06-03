@@ -43,9 +43,9 @@ namespace Ex03.GarageLogic
         {
             List<VehiclePropertyInfo> motorcycleSpecificProperties = new List<VehiclePropertyInfo>();
 
-            motorcycleSpecificProperties.Add(new VehiclePropertyInfo("LicenseType", "License Type",Enum.GetNames(typeof(eVehicleLicenseType))));
+            motorcycleSpecificProperties.Add(new VehiclePropertyInfo("LicenseType", "License Type", Enum.GetNames(typeof(eVehicleLicenseType))));
 
-            motorcycleSpecificProperties.Add(new VehiclePropertyInfo("EngineVolume", "Engine Volume",new string[0]));
+            motorcycleSpecificProperties.Add(new VehiclePropertyInfo("EngineVolume", "Engine Volume", new string[0]));
 
             return motorcycleSpecificProperties;
         }

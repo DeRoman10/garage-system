@@ -19,7 +19,7 @@ namespace Ex03.ConsoleUI
             string userLicensePlate = Console.ReadLine();
 
             r_Garage.InflateWheelsToMax(userLicensePlate);
-            
+
 
             Console.WriteLine();
             Console.WriteLine("=======================================");

@@ -17,7 +17,7 @@ namespace Ex03.ConsoleUI
         {
 
             Console.WriteLine("Enter license plate number:");
-            
+
             string licensePlate = Console.ReadLine();
 
             GarageTask selectedTask = r_Garage.GetTask(licensePlate);

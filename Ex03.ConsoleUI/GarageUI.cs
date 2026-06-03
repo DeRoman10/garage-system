@@ -51,7 +51,7 @@ namespace Ex03.ConsoleUI
 
             int userInput = int.Parse(Console.ReadLine());
             eMenuOptions[] options = (eMenuOptions[])Enum.GetValues(typeof(eMenuOptions));
-            
+
             int minValue = (int)options[0];
             int maxValue = (int)options[options.Length - 1];
 
@@ -112,7 +112,7 @@ namespace Ex03.ConsoleUI
                     exitRequested = true;
                     break;
             }
-            
+
             return exitRequested;
         }
 
@@ -127,7 +127,7 @@ namespace Ex03.ConsoleUI
             Console.WriteLine();
         }
 
-        private void displayVehicleInfo() 
+        private void displayVehicleInfo()
         {
             Console.WriteLine("Enter license plate number:");
             string licensePlate = Console.ReadLine();
@@ -135,13 +135,13 @@ namespace Ex03.ConsoleUI
             GarageTask task = r_Garage.GetTask(licensePlate);
 
             Console.WriteLine("======= Garage Record ======");
-            Console.WriteLine("Owner name:  {0}" , task.OwnerName);
+            Console.WriteLine("Owner name:  {0}", task.OwnerName);
             Console.WriteLine("Owner phone: {0}", task.OwnerPhone);
             Console.WriteLine("Status:      {0}", task.VehicleStatus);
             Console.WriteLine();
 
             Console.WriteLine("======= Vehicle Info =======");
-            Console.WriteLine("Model name:    {0}" , task.Vehicle.ModelName);
+            Console.WriteLine("Model name:    {0}", task.Vehicle.ModelName);
             Console.WriteLine("License plate: {0}", task.Vehicle.LicenseNumber);
 
             for (int i = 0; i < task.Vehicle.Wheels.Length; i++)

@@ -47,7 +47,7 @@ namespace Ex03.GarageLogic
             string[] carryingFreezingCargoOptions = { "true", "false" };
 
             truckSpecificProperties.Add(new VehiclePropertyInfo("IsCarryingFreezingCargo", "Is Carrying Freezing Cargo?", carryingFreezingCargoOptions));
-            
+
             truckSpecificProperties.Add(new VehiclePropertyInfo("CargoVolume", "Cargo Volume", new string[0]));
 
             return truckSpecificProperties;
