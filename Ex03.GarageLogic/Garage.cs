@@ -17,7 +17,7 @@ namespace Ex03.GarageLogic
             }
 
             Vehicle newVehicle = VehicleCreator.CreateVehicle(i_VehicleType, i_LicenseNumber, i_ModelName);
-            
+
             if (newVehicle == null)
             {
                 throw new ArgumentException("Unsupported vehicle type.");

@@ -13,6 +13,7 @@ namespace Ex03.ConsoleUI
         private readonly VehicleStatusUI r_VehicleStatusUI;
         private readonly WheelServiceUI r_WheelServiceUI;
         private readonly RefillingUI r_RefuellingUI;
+        private readonly GarageFileLoader r_FileLoader;
 
 
         public GarageUI()
@@ -22,6 +23,7 @@ namespace Ex03.ConsoleUI
             r_VehicleStatusUI = new VehicleStatusUI(r_Garage);
             r_WheelServiceUI = new WheelServiceUI(r_Garage);
             r_RefuellingUI = new RefillingUI(r_Garage);
+            r_FileLoader = new GarageFileLoader(r_Garage);
         }
 
         public void Run()
@@ -78,6 +80,7 @@ namespace Ex03.ConsoleUI
         private bool executeMenuOption(eMenuOptions i_Choice)
         {
             bool exitRequested = false;
+            Console.WriteLine();
 
             switch (i_Choice)
             {
@@ -109,11 +112,17 @@ namespace Ex03.ConsoleUI
                     exitRequested = true;
                     break;
             }
-
+            
             return exitRequested;
         }
 
-        private void loadFromFile() { }
+        private void loadFromFile()
+        {
+            r_FileLoader.LoadFromFile("VehiclesDB.txt");
+
+            Console.WriteLine("Vehicles loaded successfully.");
+            Console.WriteLine();
+        }
 
         private void displayVehicleInfo() 
         {
@@ -134,9 +143,10 @@ namespace Ex03.ConsoleUI
 
             for (int i = 0; i < task.Vehicle.Wheels.Length; i++)
             {
-                Console.WriteLine("Wheel {0}:", i);
+                Console.WriteLine("Wheel {0}:", i + 1);
                 Console.WriteLine("manufacturer: {0}", task.Vehicle.Wheels[i].ManufacturerName);
                 Console.WriteLine("Wheel air pressure: {0}", task.Vehicle.Wheels[i].CurrentAirPressure);
+                Console.WriteLine();
             }
 
             Dictionary<string, string> energyInfo = task.Vehicle.EnergySource.GetEnergyDetails();

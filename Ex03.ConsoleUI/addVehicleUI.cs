@@ -78,11 +78,9 @@ namespace Ex03.ConsoleUI
         private string vehicleTypeInputHandler()
         {
 
-            string actualChosenType = string.Empty;
-
             int userChoice = ConsoleUtils.ChooseOption(VehicleCreator.SupportedTypes);
 
-            actualChosenType = VehicleCreator.SupportedTypes[userChoice];
+            string actualChosenType = VehicleCreator.SupportedTypes[userChoice];
 
             return actualChosenType;
         }
